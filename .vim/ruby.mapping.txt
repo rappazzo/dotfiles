@@ -1,0 +1,4 @@
+" Alternate JSON formatter
+" map <Leader>json :set filetype=json<CR>:syntax enable<CR>:%!ruby -rubygems -r json -e 'jj JSON.parse gets'<CR>
+
+

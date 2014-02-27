@@ -1,0 +1,6 @@
+function eclipse2() {
+   /Applications/eclipse/eclipse -data /Users/mrappazzo/Documents/secondary-workspace > /dev/null 2>&1
+}
+function domain_pw() {
+   security 2>&1 >/dev/null find-internet-password -s gtjira.gtnexus.local -a mrappazzo -g | sed -e 's/password: "//' -e 's/"$//'
+}

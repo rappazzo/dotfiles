@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/Users/mrappazzo/dots'
+let g:netrw_dirhist_2='/Applications/QuickTime Player.app'
+let g:netrw_dirhist_3='/TradeCard/library'
+let g:netrw_dirhist_4='/TradeCard/tools/bin'
+let g:netrw_dirhist_5='/Users/mrappazzo/v/eclipse'
+let g:netrw_dirhist_6='/TradeCard/development/etc/build'
+let g:netrw_dirhist_7='/TradeCard/library/gt-rpc'
+let g:netrw_dirhist_8='/Users/mrappazzo/dots'
