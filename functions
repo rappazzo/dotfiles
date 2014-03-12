@@ -1,6 +1,16 @@
+function fix-git() {
+   sudo perl -pi -e 's/-wait -merge/-merge/' /usr/local/Cellar/git/$(latest-git-version)/libexec/git-core/mergetools/araxis
+   sudo perl -pi -e 's/say -n "\$revount\/$revmax \(\$createcount\)/say -en "\\r\$revount\/$revmax (\$((100 * \$revcount\/\$revmax))%)/' /usr/local/Cellar/git/$(latest-git-version)/bin/git-subtree
+   sudo perl -pi -e 's:git rev-list \$merges_option --pretty=oneline --abbrev-commit \\:git rev-list \$merges_option --pretty=">%h [%an] %x09%s" \\:' /usr/local/Cellar/git/$(latest-git-version)/libexec/git-core/git-rebase--interactive
+}
 function eclipse2() {
-   /Applications/eclipse/eclipse -data /Users/mrappazzo/Documents/secondary-workspace > /dev/null 2>&1
+   open -a $HOME/Applications/Eclipse.app --new --args -data /Users/mrappazzo/Documents/secondary-workspace
 }
 function domain_pw() {
-   security 2>&1 >/dev/null find-internet-password -s gtjira.gtnexus.local -a mrappazzo -g | sed -e 's/password: "//' -e 's/"$//'
+   security 2>&1 >/dev/null find-internet-password -s gtjira.gtnexus.local -a mrappazzo -g | sed -e 's/password: "//' -e 's/"$//'  | perl -ne 'chomp and print' | pbcopy
+   if [ $? -eq 0 ]; then
+      echo "Password copied to clipboard"
+   else
+      echo "Password not copied"
+   fi
 }
