@@ -2,6 +2,6 @@ alias gitk="gitk --all --since=\"9 months ago\""
 alias rimshot='curl http://soundboard.local/play/rimshot > /dev/null 2>&1'
 alias sneeze='curl http://soundboard.local/sneeze > /dev/null 2>&1'
 alias kwong='curl http://soundboard.local/play/kwong2 > /dev/null 2>&1'
-alias latest-git-version='ls -l /usr/local/Cellar/git | cut -c51- | tail -n 1'
+alias previous-git-version='ls /usr/local/Cellar/git | sort -n | tail -n 2 | head -n 1'
+alias latest-git-version='ls /usr/local/Cellar/git | sort -n | tail -n 1'
 alias flush-dns="dscacheutil -flushcache; killall -HUP mDNSResponder"
-alias feature="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -tl vagrant -i /code/gtnexus/development/modules/tradecard/etc/vagrants/common/vagrant.rsa"
