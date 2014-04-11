@@ -7,7 +7,10 @@ set tabstop=3              " Indent width
 set shiftwidth=3           " Indent width
 set nobackup               " do not keep a backup file, use versions instead
 set hlsearch               " Highlight searches
-colorscheme morning        " personal preference
+" personal preference
+set background=light
+colorscheme solarized
+
 filetype plugin on         " auto-detect file type for syntax highlighting
 filetype indent on         " auto-indent files when the syntax is known
 
