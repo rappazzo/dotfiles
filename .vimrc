@@ -10,6 +10,7 @@ set hlsearch               " Highlight searches
 " personal preference
 set background=light
 colorscheme solarized
+set number
 
 filetype plugin on         " auto-detect file type for syntax highlighting
 filetype indent on         " auto-indent files when the syntax is known
