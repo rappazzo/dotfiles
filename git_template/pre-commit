@@ -1,0 +1,45 @@
+#!/bin/bash
+#
+# This hook will look for code comments marked '//no-commit' 
+#    - case-insensitive
+#    - dash is optional
+#    - there may be a space after the //
+#
+noCommitCount=$(git diff --no-ext-diff --cached | egrep -i --count "(@No|\/\/\s?no[ -]?)commit")
+if [ "$noCommitCount" -ne "0" ]; then
+   echo "WARNING: You are attempting to commit changes which include a 'no-commit'."
+   echo "Please check the following files:"
+   git diff --no-ext-diff --cached --name-only -i -G"(@no|\/\/s?no-?)commit" | sed 's/^/   - /'
+   echo
+   echo "You can ignore this warning by running the commit command with '--no-verify'"
+   exit 1
+fi
+#
+# This hook will look for changes setting DEBUG = true and reject them
+#
+debugTrue=$(git diff --no-ext-diff --cached | egrep -i --count "^\+.*\sDEBUG\s*=\s*true")
+if [ "$debugTrue" -ne "0" ]; then
+   echo "WARNING: You are attempting to commit changes which include setting a DEBUG flag to true."
+   echo "         This is a no-no.  The soundboard has been notified."
+   myUser=$(git config --global user.name)
+   curl "http://10.161.60.31/say/${myUser// /%20/}%20is%20trying%20to%20set%20Debug%20equal%20to%20true" > /dev/null 2>&1 &
+   echo "Please check the following files:"
+   git diff --no-ext-diff --cached --name-only -i -G" DEBUG *= *true" | sed 's/^/   - /'
+   echo
+   exit 1
+fi
+#
+# This hook will look for changes setting .printStackTrace(); and reject them
+#
+debugTrue=$(git diff --no-ext-diff --cached | egrep -i --count "^\+.*\.printStackTrace\(\);")
+if [ "$debugTrue" -ne "0" ]; then
+   echo "WARNING: You are attempting to commit changes which include '.printStackTrace();'"
+   echo "         This is a no-no.  The soundboard has been notified."
+   myUser=$(git config --global user.name)
+   curl "http://10.161.60.31/say/${myUser// /%20/}%20is%20committing%20print%20stack%20trace" > /dev/null 2>&1 &
+   echo "Please check the following files:"
+   git diff --no-ext-diff --cached --name-only -i -G"printStackTrace" | sed 's/^/   - /'
+   echo
+   exit 1
+fi
+
