@@ -1,4 +1,4 @@
-export PATH="/usr/local/bin:/TradeCard/tools/bin:$PATH:/usr/local/sbin"
+export PATH="/usr/local/bin:/code/tools/bin:$PATH:/usr/local/sbin"
 export EDITOR=/usr/local/bin/mvim
 export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 export VAGRANT_CWD=/TradeCard/development/etc/vagrants/vagrant-13.7.0
