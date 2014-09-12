@@ -9,17 +9,15 @@ function fix-git {
    fi
 }
 function eclipse2() {
-   open -a $HOME/Applications/Eclipse.app --new --args -data /Users/mrappazzo/Documents/secondary-workspace
-}
-function domain_pw() {
-   security 2>&1 >/dev/null find-internet-password -s gtjira.gtnexus.local -a mrappazzo -g | sed -e 's/password: "//' -e 's/"$//'  | perl -ne 'chomp and print' | pbcopy
-   if [ $? -eq 0 ]; then
-      echo "Password copied to clipboard"
-   else
-      echo "Password not copied"
-   fi
+   open -a $HOME/Applications/Eclipse.app --new --args -data /Users/mike/Documents/eclipse/secondary-workspace
 }
 feature() {
    ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -tl vagrant -i /code/gtnexus/development/modules/main/tcard/etc/vagrants/common/vagrant.rsa 10.161.65.$1
 }
-
+function fix-outlook {
+   defaults write "/Applications/Microsoft Lync.app/Contents/Info.plist" "NSSupportsAutomaticGraphicsSwitching" -bool true
+   defaults write "/Applications/Microsoft Office 2011/Microsoft Outlook.app/Contents/Info.plist" "NSSupportsAutomaticGraphicsSwitching" -bool true
+}
+function only-my-branch {
+   git log $1 --not $( git show-ref --heads | cut -d' ' -f2 | grep -v "^refs/heads/$1" )
+}

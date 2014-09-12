@@ -1,10 +1,13 @@
 export PATH="/usr/local/bin:/code/tools/bin:$PATH:/usr/local/sbin"
 export EDITOR=/usr/local/bin/mvim
+export MY_USER=mrappazzo
 export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
-export VAGRANT_CWD=/TradeCard/development/etc/vagrants/vagrant-13.7.0
+export VAGRANT_CWD=/code/gtnexus/development/modules/main/tcard/etc/vagrants/vagrant-14.4.0
 set -o vi
 . ~/dots/aliases
 . ~/dots/functions
+
+# BASH specific
 . `brew --prefix`/etc/bash_completion.d/git-completion.bash
 
 # Show branch in status line

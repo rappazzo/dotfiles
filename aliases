@@ -5,3 +5,10 @@ alias kwong='curl http://soundboard.local/play/kwong2 > /dev/null 2>&1'
 alias previous-git-version='ls /usr/local/Cellar/git | sort -n | tail -n 2 | head -n 1'
 alias latest-git-version='ls /usr/local/Cellar/git | sort -n | tail -n 1'
 alias flush-dns="dscacheutil -flushcache; killall -HUP mDNSResponder"
+alias win64="VBoxManage startvm Win64"
+alias m2settings="mvim ~/.m2/settings.xml"
+alias tcmigrate="modules/main/tcard/etc/migration/flyway-commandline/tc-migrate.sh migrate"
+alias file-tree="find . -print | sed -e 's;[^/]*/;├────;g;s;├────; |;g'"
+
+#Add -N option to let it run in the background
+alias soundboard-tunnel="ssh -L 5901:127.0.0.1:5900 rappazzo@soundboard.local"

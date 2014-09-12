@@ -1,3 +1,4 @@
+execute pathogen#infect()
 set ic                     " Ignore Case
 set nowrap                 " Don't wrap lines 
 set clipboard=unnamed      " Use the system clipboard
@@ -23,5 +24,8 @@ map <Leader>xml :set filetype=xml<CR>:syntax enable<CR>:%!tidy -mi -xml -q -utf8
 
 " set the syntax type to 'JSON', and prettify it
 map <Leader>json :set filetype=json<CR>:syntax enable<CR>:%!python -m json.tool<CR>
+
+" Disable folding in the markdown plugin
+let g:vim_markdown_folding_disabled=1
 
 noremap <2-LeftMouse> *

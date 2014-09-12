@@ -1,0 +1,30 @@
+source ~/.antigen/src/antigen.zsh
+
+antigen use oh-my-zsh
+
+# Bundles from the default repo declared above.
+antigen bundles <<EOBUNDLES
+
+   git
+
+   # ZSH port of Fish shell's history search feature.
+   zsh-users/zsh-history-substring-search
+   
+   # Syntax highlighting bundle.
+   zsh-users/zsh-syntax-highlighting
+
+EOBUNDLES
+
+# Load the theme.
+antigen theme mrappazzo
+
+antigen apply
+
+export PATH="/code/tools/bin:$PATH"
+export EDITOR=/usr/local/bin/mvim
+export MY_USER=mrappazzo
+export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+export VAGRANT_CWD=/code/gtnexus/development/modules/main/tcard/etc/vagrants/vagrant-14.4.0
+set -o vi
+source ~/dots/aliases
+source ~/dots/functions
