@@ -1,0 +1,20 @@
+#!/usr/bin/perl
+
+my $proc_names = "(navx|scheduledScanner|SymantecALS|smcdaemon|syguard|NortonMissedTasks)\$";
+my @all_procs = `ps axo pid,comm`;
+my $nav_procs;
+for my $proc (@all_procs) {
+   chomp($proc);
+   $proc =~ s/^\s+|\s+$//g;
+   if ($proc =~ /$proc_names/) {
+      my @parts = split(/\s+/, $proc, 2);
+      $nav_procs->{$parts[1]} = $parts[0];
+   }
+}
+
+my $to_kill = "";
+for my $proc (keys %$nav_procs) {
+   print "   $proc -> " . $nav_procs->{$proc} . "\n" if ($ARGV[0] =~ /-{0,2}verbose/);
+   $to_kill .= " " . $nav_procs->{$proc};
+}
+print "sudo kill -9 $to_kill\n";

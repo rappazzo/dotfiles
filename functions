@@ -1,23 +1,25 @@
-function fix-git {
-   sudo perl -pi -e 's/-wait -merge/-wait/' /usr/local/Cellar/git/$(latest-git-version)/libexec/git-core/mergetools/araxis
-   sudo perl -pi -e 's/say -n "\$revcount\/\$revmax \(\$createcount\)/say -en "\\r\$revcount\/\$revmax (\$((100 * \$revcount\/\$revmax))%)\\c/' /usr/local/Cellar/git/$(latest-git-version)/bin/git-subtree
-   sudo perl -pi -e 's:git rev-list \$merges_option --pretty=oneline --abbrev-commit \\:git rev-list \$merges_option --pretty=">%h [%an] %x09%s" \\:' /usr/local/Cellar/git/$(latest-git-version)/libexec/git-core/git-rebase--interactive
-   if [ "$1" == "--compare" ]; then
-      compare /usr/local/Cellar/git/$(latest-git-version)/libexec/git-core/mergetools/araxis /usr/local/Cellar/git/$(previous-git-version)/libexec/git-core/mergetools/araxis
-      compare /usr/local/Cellar/git/$(latest-git-version)/bin/git-subtree /usr/local/Cellar/git/$(previous-git-version)/bin/git-subtree
-      compare /usr/local/Cellar/git/$(latest-git-version)/libexec/git-core/git-rebase--interactive /usr/local/Cellar/git/$(previous-git-version)/libexec/git-core/git-rebase--interactive
-   fi
-}
-function eclipse2() {
-   open -a $HOME/Applications/Eclipse.app --new --args -data /Users/mike/Documents/eclipse/secondary-workspace
-}
-feature() {
-   ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -tl vagrant -i /code/gtnexus/development/modules/main/tcard/etc/vagrants/common/vagrant.rsa 10.161.65.$1
-}
-function fix-outlook {
-   defaults write "/Applications/Microsoft Lync.app/Contents/Info.plist" "NSSupportsAutomaticGraphicsSwitching" -bool true
-   defaults write "/Applications/Microsoft Office 2011/Microsoft Outlook.app/Contents/Info.plist" "NSSupportsAutomaticGraphicsSwitching" -bool true
+function eclipseN() {
+   open -a $HOME/Applications/Eclipse.app --new --args -data /Users/mike/Documents/eclipse/workspace-$1
 }
 function only-my-branch {
    git log $1 --not $( git show-ref --heads | cut -d' ' -f2 | grep -v "^refs/heads/$1" )
 }
+
+function cdup {
+   newdir="${PWD/\/$1\/*/}/$1"
+   if [[ -d "$newdir" ]]; then
+      cd "$newdir"
+   else
+      echo "\"$newdir\" does not exist"
+   fi
+}
+    
+function _cdup_complete {
+   local list=$(pwd | cut -c 2- | sed -e 's#/[^/]*$##g' -e 's/\([ ()]\)/\\\\\1/g')
+   for i in $(echo ${list} | tr "/" "\n"); do
+      compadd $i
+   done
+}
+    
+compdef _cdup_complete cdup
+

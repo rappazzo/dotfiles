@@ -7,12 +7,12 @@ antigen bundles <<EOBUNDLES
 
    git
 
-   # ZSH port of Fish shell's history search feature.
-   zsh-users/zsh-history-substring-search
-   
    # Syntax highlighting bundle.
    zsh-users/zsh-syntax-highlighting
 
+   # ZSH port of Fish shell's history search feature.
+   zsh-users/zsh-history-substring-search
+   
 EOBUNDLES
 
 # Load the theme.
@@ -20,11 +20,11 @@ antigen theme mrappazzo
 
 antigen apply
 
-export PATH="/code/tools/bin:$PATH"
+export PATH="/code/tools/bin:$PATH:$HOME/dots/bin"
 export EDITOR=/usr/local/bin/mvim
 export MY_USER=mrappazzo
 export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
-export VAGRANT_CWD=/code/gtnexus/development/modules/main/tcard/etc/vagrants/vagrant-14.4.0
+export VAGRANT_CWD=/code/gtnexus/development/modules/main/tcard/etc/vagrants/$(ls /code/gtnexus/development/modules/main/tcard/etc/vagrants/ | grep vagrant | sort | tail -n 1)
 set -o vi
 source ~/dots/aliases
 source ~/dots/functions

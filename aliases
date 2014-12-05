@@ -9,6 +9,7 @@ alias win64="VBoxManage startvm Win64"
 alias m2settings="mvim ~/.m2/settings.xml"
 alias tcmigrate="modules/main/tcard/etc/migration/flyway-commandline/tc-migrate.sh migrate"
 alias file-tree="find . -print | sed -e 's;[^/]*/;├────;g;s;├────; |;g'"
+alias git-conflicts="git ls-files --unmerged | awk '{print $4}' | sort -u | wc -l"
 
 #Add -N option to let it run in the background
 alias soundboard-tunnel="ssh -L 5901:127.0.0.1:5900 rappazzo@soundboard.local"
