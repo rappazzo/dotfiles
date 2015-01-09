@@ -13,3 +13,4 @@ alias git-conflicts="git ls-files --unmerged | awk '{print $4}' | sort -u | wc -
 
 #Add -N option to let it run in the background
 alias soundboard-tunnel="ssh -L 5901:127.0.0.1:5900 rappazzo@soundboard.local"
+alias smtp-tunnel="ssh -L 2525:qasmtp1b.qa.gtnexus.com:25 mrappazzo@stash.gtnexus.local"
