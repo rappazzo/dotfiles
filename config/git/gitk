@@ -1,0 +1,62 @@
+set mainfont {Terminus 11}
+set textfont {{Letter Gothic} 11}
+set uifont {Terminus 10 bold}
+set tabstop 4
+set findmergefiles 0
+set maxgraphpct 50
+set maxwidth 16
+set cmitmode patch
+set wrapcomment none
+set autoselect 1
+set autosellen 40
+set showneartags 1
+set maxrefs 20
+set visiblerefs {"alpha" "release" "platform" "unified/alpha-base" "unified/appX"}
+set hideremotes 0
+set showlocalchanges 1
+set datetimeformat {%Y-%m-%d %H:%M:%S}
+set limitdiffs 1
+set uicolor grey85
+set want_ttk 1
+set bgcolor #fdf6e3
+set fgcolor #073642
+set uifgcolor black
+set uifgdisabledcolor #999
+set colors {green red blue magenta darkgrey brown orange}
+set diffcolors {red "#00a000" blue}
+set mergecolors {red blue green purple brown "#009090" magenta "#808000" "#009000" "#ff0080" cyan "#b07070" "#70b0f0" "#70f0b0" "#f0b070" "#ff70b0"}
+set markbgcolor #657b83
+set diffcontext 11
+set selectbgcolor #ded8d5
+set foundbgcolor #b58900
+set currentsearchhitbgcolor #cb4b16
+set extdifftool araxis
+set perfile_attrs 0
+set headbgcolor #75d944
+set headfgcolor #073642
+set headoutlinecolor #073642
+set remotebgcolor #db7682
+set tagbgcolor #b58900
+set tagfgcolor #073642
+set tagoutlinecolor #073642
+set reflinecolor #073642
+set filesepbgcolor #2aa198
+set filesepfgcolor #073642
+set linehoverbgcolor #586e75
+set linehoverfgcolor #073642
+set linehoveroutlinecolor #073642
+set mainheadcirclecolor #b58900
+set workingfilescirclecolor #d33682
+set indexcirclecolor #859900
+set circlecolors {white blue gray blue blue}
+set linkfgcolor #268bd2
+set circleoutlinecolor #073642
+set geometry(main) 1319x852+5+28
+set geometry(state) normal
+set geometry(topwidth) 1319
+set geometry(topheight) 306
+set geometry(pwsash0) "875 1"
+set geometry(pwsash1) "1119 1"
+set geometry(botwidth) 701
+set geometry(botheight) 541
+set permviews {}

@@ -5,7 +5,7 @@ latest_git_version=$(ls /usr/local/Cellar/git | sort -n | tail -n 1)
 
 sudo perl -pi -e 's/-wait -merge/-wait/' /usr/local/Cellar/git/${latest_git_version}/libexec/git-core/mergetools/araxis
 sudo perl -pi -e 's/say -n "\$revcount\/\$revmax \(\$createcount\)/say -en "\\r\$revcount\/\$revmax (\$((100 * \$revcount\/\$revmax))%)\\c/' /usr/local/Cellar/git/${latest_git_version}/bin/git-subtree
-sudo perl -pi -e 's:git rev-list \$merges_option --pretty=oneline --abbrev-commit \\:git rev-list \$merges_option --pretty=">%h [%an] %x09%s" \\:' /usr/local/Cellar/git/${latest_git_version}/libexec/git-core/git-rebase--interactive
+sudo perl -pi -e 's:git rev-list \$merges_option --pretty=oneline --abbrev-commit \\:git rev-list \$merges_option --pretty="%m%h [%an] %x09%s" \\:' /usr/local/Cellar/git/${latest_git_version}/libexec/git-core/git-rebase--interactive
 
 if [[ $1 == "--compare" ]]; then
    compare /usr/local/Cellar/git/${latest_git_version}/libexec/git-core/mergetools/araxis /usr/local/Cellar/git/${previous_git_version}/libexec/git-core/mergetools/araxis
