@@ -25,6 +25,8 @@ export EDITOR=/usr/local/bin/mvim
 export MY_USER=mrappazzo
 export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 export VAGRANT_CWD=/code/gtnexus/development/modules/main/tcard/etc/vagrants/$(ls /code/gtnexus/development/modules/main/tcard/etc/vagrants/ | grep vagrant | sort | tail -n 1)
+export TOOLS_BIN=/code/tools/bin
 set -o vi
 source ~/dots/aliases
 source ~/dots/functions
+source $TOOLS_BIN/.autocomplete/zsh/.install

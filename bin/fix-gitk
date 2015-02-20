@@ -1,0 +1,50 @@
+#!/bin/bash
+
+previous_git_version=$(ls /usr/local/Cellar/git | sort -n | tail -n 2 | head -n 1)
+latest_git_version=$(ls /usr/local/Cellar/git | sort -n | tail -n 1)
+
+for arg_str in $@; do
+   arg=${arg_str%%=*}
+   argVal=${arg_str##*=}
+
+   case ${arg} in
+      --no-compare)
+         no_compare=1
+         ;;
+      --negate)
+         negate=1
+         ;;
+   esac
+done
+
+if grep --quiet reffilter /usr/local/Cellar/git/${latest_git_version}/bin/gitk; then
+   if [[ ${negate} == 1 ]]; then
+      echo "TO DO"
+   else
+      echo "Already done."
+   fi
+   exit 0
+fi
+# ---- add reffilter config variable to gitk ---- #
+#add declaration of ref filter variable
+sudo perl -pi -e '$_ .= "set reffilter \"\"\n" if /set visiblerefs \{\"master\"\}/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
+
+#add ref filter to config
+sudo perl -pi -e '$_ .= "    reffilter\n" if /cmitmode wrapcomment autoselect autosellen showneartags maxrefs visiblerefs/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
+
+#declare access to ref filter from readref proc
+sudo perl -pi -e '$_ .= "    global reffilter\n" if /^\s?proc readrefs/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
+
+#ignore the ref filter
+sudo perl -pi -e '$_ .= "\tif {[regexp \$reffilter \$name]} continue\n" if /set name \[string range \$ref 5 end\]/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
+
+
+# ---- Add 'Copy path' to file list ---- #
+sudo perl -pi -e '$_ .= "\t{mc \"Copy path\" command {clipboard clear; clipboard append \$flist_menu_file}}\n" if /mc "Blame parent commit"/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
+
+# ---- Add 'Copy branch name' to branch list ---- #
+sudo perl -pi -e '$_ .= "\t{mc \"Copy branch name\" command {clipboard clear; clipboard append \$headmenuhead}}\n" if /mc "Remove this branch"/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
+
+if [[ ${no_compare} != 0 ]]; then
+   compare /usr/local/Cellar/git/${latest_git_version}/bin/gitk /usr/local/Cellar/git/${previous_git_version}/bin/gitk
+fi
