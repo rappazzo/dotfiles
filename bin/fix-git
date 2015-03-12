@@ -3,11 +3,22 @@
 previous_git_version=$(ls /usr/local/Cellar/git | sort -n | tail -n 2 | head -n 1)
 latest_git_version=$(ls /usr/local/Cellar/git | sort -n | tail -n 1)
 
+for arg_str in $@; do
+   arg=${arg_str%%=*}
+   argVal=${arg_str##*=}
+
+   case ${arg} in
+      --no-compare)
+         no_compare=1
+         ;;
+   esac
+done
+
 sudo perl -pi -e 's/-wait -merge/-wait/' /usr/local/Cellar/git/${latest_git_version}/libexec/git-core/mergetools/araxis
 sudo perl -pi -e 's/say -n "\$revcount\/\$revmax \(\$createcount\)/say -en "\\r\$revcount\/\$revmax (\$((100 * \$revcount\/\$revmax))%)\\c/' /usr/local/Cellar/git/${latest_git_version}/bin/git-subtree
-sudo perl -pi -e 's:git rev-list \$merges_option --pretty=oneline --abbrev-commit \\:git rev-list \$merges_option --pretty="%m%h [%an] %x09%s" \\:' /usr/local/Cellar/git/${latest_git_version}/libexec/git-core/git-rebase--interactive
+sudo perl -pi -e 's:^\s*git rev-list \$merges_option --pretty=oneline:git rev-list \$merges_option --pretty="%m%h [%an] %x09%s" \\:' /usr/local/Cellar/git/${latest_git_version}/libexec/git-core/git-rebase--interactive
 
-if [[ $1 == "--compare" ]]; then
+if [[ ${no_compare} != 0 ]]; then
    compare /usr/local/Cellar/git/${latest_git_version}/libexec/git-core/mergetools/araxis /usr/local/Cellar/git/${previous_git_version}/libexec/git-core/mergetools/araxis
    compare /usr/local/Cellar/git/${latest_git_version}/bin/git-subtree /usr/local/Cellar/git/${previous_git_version}/bin/git-subtree
    compare /usr/local/Cellar/git/${latest_git_version}/libexec/git-core/git-rebase--interactive /usr/local/Cellar/git/${previous_git_version}/libexec/git-core/git-rebase--interactive

@@ -1,0 +1,41 @@
+[user]
+    name = Michael Rappazzo
+    email = michael.rappazzo@gtnexus.com
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+[color.status]
+    changed = yellow
+[core]
+    excludesfile = ~/.gitignore
+    editor = mvim -v
+    preloadindex = true
+[diff] 
+    tool = araxis
+    external = git-difftool--helper
+[difftool]
+    prompt=false   
+    keepBackup = false
+[merge] 
+    tool = araxis
+[mergetool]
+    prompt=false
+    keepBackup=false
+[pager]
+    diff = false
+[push]
+    default = tracking
+[branch]
+    autosetuprebase = always
+[credential]
+	helper = osxkeychain
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+
+[guitool "Revert to HEAD"]
+	cmd = git checkout HEAD -- \"$FILENAME\"
+[fetch-daily]
+	fetch-dirs = /code/gtnexus/development /code/tools/bin
+	ff-refs = /code/gtnexus/development /code/tools/bin
+	base-of = /code/gtnexus/development

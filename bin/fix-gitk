@@ -25,19 +25,16 @@ if grep --quiet reffilter /usr/local/Cellar/git/${latest_git_version}/bin/gitk; 
    fi
    exit 0
 fi
-# ---- add reffilter config variable to gitk ---- #
-#add declaration of ref filter variable
+# ---- add reffilter config variable and flag to ignore the filter to gitk ---- #
+#variable declaration, command line reading, and config variable setup
 sudo perl -pi -e '$_ .= "set reffilter \"\"\n" if /set visiblerefs \{\"master\"\}/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
-
-#add ref filter to config
 sudo perl -pi -e '$_ .= "    reffilter\n" if /cmitmode wrapcomment autoselect autosellen showneartags maxrefs visiblerefs/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
+sudo perl -pi -e '$_ .= "set reall_show_all 0\n" if /^setoptions$/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
+sudo perl -pi -e '$_ = "   \"--really-show-all\" \{ set really_show_all 1 \}\n$_" if /"--argscmd=\*" \{/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
 
-#declare access to ref filter from readref proc
-sudo perl -pi -e '$_ .= "    global reffilter\n" if /^\s?proc readrefs/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
-
-#ignore the ref filter
-sudo perl -pi -e '$_ .= "\tif {[regexp \$reffilter \$name]} continue\n" if /set name \[string range \$ref 5 end\]/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
-
+#changes to readrefs proc
+sudo perl -pi -e '$_ .= "    global reffilter really_show_all\n" if /^\s?proc readrefs/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
+sudo perl -pi -e '$_ .= "\tif {\$really_show_all \!= 1 \&\& [regexp \$reffilter \$name]} continue\n" if /set name \[string range \$ref 5 end\]/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
 
 # ---- Add 'Copy path' to file list ---- #
 sudo perl -pi -e '$_ .= "\t{mc \"Copy path\" command {clipboard clear; clipboard append \$flist_menu_file}}\n" if /mc "Blame parent commit"/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk

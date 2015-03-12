@@ -26,6 +26,8 @@ export MY_USER=mrappazzo
 export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 export VAGRANT_CWD=/code/gtnexus/development/modules/main/tcard/etc/vagrants/$(ls /code/gtnexus/development/modules/main/tcard/etc/vagrants/ | grep vagrant | sort | tail -n 1)
 export TOOLS_BIN=/code/tools/bin
+#export STUDIO_JDK=/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk
+export STUDIO_JDK=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
 set -o vi
 source ~/dots/aliases
 source ~/dots/functions
