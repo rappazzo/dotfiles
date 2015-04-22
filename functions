@@ -14,12 +14,17 @@ function cdup {
    fi
 }
     
-function _cdup_complete {
-   local list=$(pwd | cut -c 2- | sed -e 's#/[^/]*$##g' -e 's/\([ ()]\)/\\\\\1/g')
-   for i in $(echo ${list} | tr "/" "\n"); do
-      compadd $i
-   done
-}
+#shell=$(echo $0)
+#echo $shell
+if which compdef > /dev/null 2>&1; then
+
+   function _cdup_complete {
+      local list=$(pwd | cut -c 2- | sed -e 's#/[^/]*$##g' -e 's/\([ ()]\)/\\\\\1/g')
+      for i in $(echo ${list} | tr "/" "\n"); do
+         compadd $i
+      done
+   }
     
-compdef _cdup_complete cdup
+   compdef _cdup_complete cdup
+fi
 

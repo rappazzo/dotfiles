@@ -32,3 +32,5 @@ set -o vi
 source ~/dots/aliases
 source ~/dots/functions
 source $TOOLS_BIN/.autocomplete/zsh/.install
+# Report CPU usage for commands running longer than 10 seconds
+REPORTTIME=10
