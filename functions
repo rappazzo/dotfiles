@@ -17,7 +17,7 @@ function cdup {
 #shell=$(echo $0)
 #echo $shell
 if which compdef > /dev/null 2>&1; then
-
+   # zsh
    function _cdup_complete {
       local list=$(pwd | cut -c 2- | sed -e 's#/[^/]*$##g' -e 's/\([ ()]\)/\\\\\1/g')
       for i in $(echo ${list} | tr "/" "\n"); do
@@ -26,5 +26,20 @@ if which compdef > /dev/null 2>&1; then
    }
     
    compdef _cdup_complete cdup
+
+else
+    # bash
+    function _cdup_complete {
+        local word=${COMP_WORDS[COMP_CWORD]}
+        local list=$(pwd | cut -c 2- | sed -e 's#/[^/]*$##g' -e 's/\([ ()]\)/\\\\\1/g')
+        IFS=/
+        list=$(compgen -W "$list" -- "$word")
+        IFS=$'\n'
+        COMPREPLY=($list)
+        return 0
+    }
+    
+    complete -F _cdup_complete cdup
+
 fi
 
