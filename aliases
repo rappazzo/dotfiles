@@ -13,6 +13,7 @@ alias git-conflicts="git ls-files --unmerged | awk '{print \$4}' | sort -u | wc 
 alias last10='git log -n 10 --format="%h [%Cblue%><(20)%an%Creset] %s"|cat'
 alias git-feature-folder='git ls-remote --heads feature | awk "{print \$2}" | sed "s:refs/heads/::" | perl -pe "s:/[\w\d_-]+\$::" | sort -u | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|--\1/"'
 alias fetch="git-fetch-daily --all"
+alias mvim="mvim --remote-tab 2>/dev/null"
 
 #Add -N option to let it run in the background
 alias soundboard-tunnel="ssh -L 5901:127.0.0.1:5900 rappazzo@soundboard.local"

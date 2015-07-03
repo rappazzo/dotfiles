@@ -22,20 +22,27 @@
 [mergetool]
     prompt=false
     keepBackup=false
+    automerge = false
 [pager]
     diff = false
 [push]
-    default = tracking
+	default = upstream
 [branch]
     autosetuprebase = always
 [credential]
 	helper = osxkeychain
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
-
 [guitool "Revert to HEAD"]
 	cmd = git checkout HEAD -- \"$FILENAME\"
 [fetch-daily]
 	fetch-dirs = /code/gtnexus/development /code/tools/bin
 	ff-refs = /code/gtnexus/development /code/tools/bin
 	base-of = /code/gtnexus/development
+[sendemail]
+   smtpEncryption = tls
+   smtpServer = smtp.gmail.com
+   smtpUser = rappazzo@gmail.com
+   smtpServerPort = 587
+[rebase]
+   instructionFormat = [%an] %x09%s

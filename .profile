@@ -26,6 +26,11 @@ BLUE="\[\033[0;36m\]"
 WHITE="\[\033[0;39m\]"
 
 PS1="$BLUE\$(date +%H:%M) $BLUE\w$YELLOW \$(parse_git_branch)$WHITE\n$ $BLUE"
+export TOOLS_BIN=/code/tools/bin
+source $TOOLS_BIN/.autocomplete/bash/.install
 #PS1="$RED\$(date +%H:%M) \W$YELLOW \$(parse_git_branch)"
 #PS1='\w$(__git_ps1 " (%s)")\$ '
 
+# Added by install_latest_perl_osx.pl
+[ -r /Users/mike/.bashrc ] && source /Users/mike/.bashrc
+source /Users/mike/perl5/perlbrew/etc/bashrc

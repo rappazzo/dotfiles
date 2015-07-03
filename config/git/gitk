@@ -12,7 +12,6 @@ set autosellen 40
 set showneartags 1
 set maxrefs 20
 set visiblerefs {"master"}
-set reffilter bugs|tags|base-of|SLDev|feature/gtnx|feature/tcx|feature/umb|agile|wip|uwi|feature/component/|feature/fsmith|feature/msg|feature/spc
 set hideremotes 0
 set showlocalchanges 1
 set datetimeformat {%Y-%m-%d %H:%M:%S}
@@ -52,12 +51,12 @@ set indexcirclecolor #859900
 set circlecolors {white blue gray blue blue}
 set linkfgcolor #268bd2
 set circleoutlinecolor #073642
-set geometry(main) 1280x882+5+28
+set geometry(main) 1266x893+5+28
 set geometry(state) normal
-set geometry(topwidth) 1280
+set geometry(topwidth) 1266
 set geometry(topheight) 306
-set geometry(pwsash0) "848 1"
-set geometry(pwsash1) "1085 1"
-set geometry(botwidth) 680
-set geometry(botheight) 571
+set geometry(pwsash0) "828 1"
+set geometry(pwsash1) "1061 1"
+set geometry(botwidth) 648
+set geometry(botheight) 582
 set permviews {}

@@ -27,20 +27,20 @@ if grep --quiet reffilter /usr/local/Cellar/git/${latest_git_version}/bin/gitk; 
 fi
 # ---- add reffilter config variable and flag to ignore the filter to gitk ---- #
 #variable declaration, command line reading, and config variable setup
-sudo perl -pi -e '$_ .= "set reffilter \"\"\n" if /set visiblerefs \{\"master\"\}/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
-sudo perl -pi -e '$_ .= "    reffilter\n" if /cmitmode wrapcomment autoselect autosellen showneartags maxrefs visiblerefs/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
-sudo perl -pi -e '$_ .= "set really_show_all 0\n" if /^setoptions$/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
-sudo perl -pi -e '$_ = "   \"--really-show-all\" \{ set really_show_all 1 \}\n$_" if /"--argscmd=\*" \{/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
+# sudo perl -pi -e '$_ .= "set reffilter \"\"\n" if /set visiblerefs \{\"master\"\}/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
+# sudo perl -pi -e '$_ .= "    reffilter\n" if /cmitmode wrapcomment autoselect autosellen showneartags maxrefs visiblerefs/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
+# sudo perl -pi -e '$_ .= "set really_show_all 0\n" if /^setoptions$/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
+# sudo perl -pi -e '$_ = "   \"--really-show-all\" \{ set really_show_all 1 \}\n$_" if /"--argscmd=\*" \{/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
 
 #changes to readrefs proc
-sudo perl -pi -e '$_ .= "    global reffilter really_show_all\n" if /^\s?proc readrefs/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
-sudo perl -pi -e '$_ .= "\tif {\$really_show_all \!= 1 \&\& [regexp \$reffilter \$name]} continue\n" if /set name \[string range \$ref 5 end\]/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
+# sudo perl -pi -e '$_ .= "    global reffilter really_show_all\n" if /^\s?proc readrefs/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
+# sudo perl -pi -e '$_ .= "\tif {\$really_show_all \!= 1 \&\& [regexp \$reffilter \$name]} continue\n" if /set name \[string range \$ref 5 end\]/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
 
 # ---- Add 'Copy path' to file list ---- #
-sudo perl -pi -e '$_ .= "\t{mc \"Copy path\" command {clipboard clear; clipboard append \$flist_menu_file}}\n" if /mc "Blame parent commit"/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
+#sudo perl -pi -e '$_ .= "\t{mc \"Copy path\" command {clipboard clear; clipboard append \$flist_menu_file}}\n" if /mc "Blame parent commit"/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
 
 # ---- Add 'Copy branch name' to branch list ---- #
-sudo perl -pi -e '$_ .= "\t{mc \"Copy branch name\" command {clipboard clear; clipboard append \$headmenuhead}}\n" if /mc "Remove this branch"/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
+#sudo perl -pi -e '$_ .= "\t{mc \"Copy branch name\" command {clipboard clear; clipboard append \$headmenuhead}}\n" if /mc "Remove this branch"/' /usr/local/Cellar/git/${latest_git_version}/bin/gitk
 
 if [[ ${no_compare} != 0 ]]; then
    compare /usr/local/Cellar/git/${latest_git_version}/bin/gitk /usr/local/Cellar/git/${previous_git_version}/bin/gitk

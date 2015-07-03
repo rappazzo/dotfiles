@@ -6,6 +6,7 @@ antigen use oh-my-zsh
 antigen bundles <<EOBUNDLES
 
    git
+   gradle
 
    # Syntax highlighting bundle.
    zsh-users/zsh-syntax-highlighting
@@ -23,7 +24,7 @@ antigen apply
 export PATH="/code/tools/bin:$PATH:$HOME/dots/bin"
 export EDITOR=/usr/local/bin/mvim
 export MY_USER=mrappazzo
-export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export VAGRANT_CWD=/code/gtnexus/development/modules/main/tcard/etc/vagrants/$(ls /code/gtnexus/development/modules/main/tcard/etc/vagrants/ | grep vagrant | sort | tail -n 1)
 export TOOLS_BIN=/code/tools/bin
 #export STUDIO_JDK=/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk

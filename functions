@@ -13,6 +13,9 @@ function cdup {
       echo "\"$newdir\" does not exist"
    fi
 }
+function findin {
+   egrep . --include="$1" --ignore-case --line-number --recursive --regexp="$2"
+}
     
 #shell=$(echo $0)
 #echo $shell
