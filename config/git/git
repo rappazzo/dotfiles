@@ -13,7 +13,7 @@
     preloadindex = true
 [diff] 
     tool = araxis
-    external = git-difftool--helper
+    #external = git-difftool--helper
 [difftool]
     prompt=false   
     keepBackup = false
