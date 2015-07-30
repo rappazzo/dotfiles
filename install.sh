@@ -1,9 +1,11 @@
 #!/bin/sh
 
-#ln -s ~/dots/.profile ~/.profile
-ln -s ~/dots/.vimrc ~/.vimrc
-ln -s ~/dots/.vim ~/.vim
-#ln -s ~/dots/.profile ~/.bashrc
-#ln -s ~/dots/.profile ~/.bash_login
-#ln -s ~/dots/.profile ~/.bash_profile
+here=$(dirname $0)
+
+#ln -s ${here}/.profile ~/.profile
+ln -s ${here}/.vimrc ~/.vimrc
+ln -s ${here}/.vim ~/.vim
+#ln -s ${here}/.profile ~/.bashrc
+#ln -s ${here}/.profile ~/.bash_login
+#ln -s ${here}/.profile ~/.bash_profile
 echo "Automatic profile linking disabled -- use zsh or bash"
