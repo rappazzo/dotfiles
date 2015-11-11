@@ -18,5 +18,4 @@ done
 
 if [[ ${no_compare} != 0 ]]; then
    compare /usr/local/Cellar/git/${latest_git_version}/libexec/git-core/mergetools/araxis /usr/local/Cellar/git/${previous_git_version}/libexec/git-core/mergetools/araxis
-   compare /usr/local/Cellar/git/${latest_git_version}/libexec/git-core/git-rebase--interactive /usr/local/Cellar/git/${previous_git_version}/libexec/git-core/git-rebase--interactive
 fi

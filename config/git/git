@@ -9,8 +9,9 @@
     changed = yellow
 [core]
     excludesfile = ~/.gitignore
-    editor = mvim -v
+	editor = mvim -f --nomru -c \"au VimLeave * !open -a iTerm\"
     preloadindex = true
+	pager = 
 [diff] 
     tool = araxis
     #external = git-difftool--helper
@@ -36,8 +37,8 @@
 [guitool "Revert to HEAD"]
 	cmd = git checkout HEAD -- \"$FILENAME\"
 [fetch-daily]
-	fetch-dirs = /code/gtnexus/development /code/tools/bin
-	ff-refs = /code/gtnexus/development /code/tools/bin
+	fetch-dirs = /code/gtnexus/development
+	ff-refs = /code/gtnexus/development
 	base-of = /code/gtnexus/development
 [sendemail]
    smtpEncryption = tls
@@ -45,4 +46,8 @@
    smtpUser = rappazzo@gmail.com
    smtpServerPort = 587
 [rebase]
-   instructionFormat = [%an] %x09%s
+	instructionFormat = [%an%<|(64)%x5d %s
+	autoSquash = true
+[pack]
+	window = 250
+	depth = 250
