@@ -1,0 +1,97 @@
+#!/bin/bash
+
+dots='...........................................................................................'
+
+worktrees=()
+
+function find_worktrees {
+   main_tree=$(git rev-parse --git-common-dir)
+   if [[ ${main_tree} == ".git" ]]; then
+      main_tree="$(pwd)/${main_tree}"
+   fi
+   
+   worktrees[${#worktrees[@]}]=${main_tree%/*}
+   worktree_dirs=($(ls "${main_tree}/worktrees" 2>/dev/null))
+   for worktree_dir in ${worktree_dirs[@]}; do
+      worktree_git_dir=$(cat "${main_tree}/worktrees/${worktree_dir}/gitdir")
+      worktrees[${#worktrees[@]}]=${worktree_git_dir%/*}
+   done
+   #for wt in ${worktrees[@]};do echo $wt;done
+}
+
+function _merge_ff {
+    branch="$1"
+    upstream="$2"
+
+    branch_orig_hash="$(git show-ref -s --verify refs/heads/$branch 2> /dev/null)"
+    upstream_orig_hash="$(git rev-parse --verify $upstream 2> /dev/null)"
+    if [[ ${upstream_orig_hash} ]]; then
+       base=$(git merge-base ${branch_orig_hash} ${upstream_orig_hash})
+    fi
+
+    display="$branch ➡ $upstream"
+    printf "     %s%s" "$display" "${dots:${#display}}" 
+    if [[ -z $upstream_orig_hash ]]; then
+       result="REMOTE-MISSING"
+
+    elif [[ "$branch_orig_hash" == "$upstream_orig_hash" ]]; then
+       result="UP-TO-DATE"
+
+    elif [[ ${branch_orig_hash} != ${base} ]]; then
+       result="UP-TO-DATE"
+
+    elif [[ $(git symbolic-ref --short HEAD 2> /dev/null) == ${branch} ]]; then
+       git merge --quiet --ff-only "$upstream" 2> /dev/null
+       if [[ $? -ne 0 ]]; then
+          result="NON-FAST-FORWARD"
+       else
+          result="UPDATED"
+       fi
+
+    else
+       if [[ "$(git merge-base $branch_orig_hash $upstream_orig_hash)" != "$branch_orig_hash" ]]; then
+          result="NON-FAST-FORWARD"
+       else
+          attempt_update=1
+          if [[ ${#worktrees[@]} > 0 ]]; then
+             updated=0
+             for worktree in ${worktrees[@]}; do
+                worktree_head=$(cd $worktree && git symbolic-ref --short HEAD 2> /dev/null)
+                if [[ ${worktree_head} == ${branch} ]]; then
+                   $(cd "${worktree}" && git merge --quiet --ff-only "$upstream" 2> /dev/null )
+                   if [[ $? -ne 0 ]]; then
+                      result="NON-FAST-FORWARD"
+                   else
+                      result="UPDATED"
+                   fi
+                   updated=1
+                fi
+             done
+             if [[ ${updated} -ne 0 ]]; then
+                attempt_update=0
+             fi
+          fi
+          if [[ ${attempt_update} -ne 0 ]]; then
+             if git update-ref -m "git-ff-refs $upstream: Fast forward" "refs/heads/$branch" "$upstream_orig_hash" "$branch_orig_hash"; then
+                result="UPDATED"
+             else
+                result="SKIPPED"
+             fi
+          fi
+       fi
+    fi
+    printf "[%s]\n" "$result"
+}
+
+find_worktrees
+
+echo "Fast forwarding local refs"
+tracked_branches=($(git for-each-ref --format='%(refname)' 'refs/heads/' | sed 's:refs/heads/::'))
+for tracked_branch in "${tracked_branches[@]}"
+do
+   if remote=$(git config --get branch.${tracked_branch}.remote); then 
+      remote_branch=$(git config --get branch.${tracked_branch}.merge)
+      upstream=$remote/${remote_branch/refs\/heads\//}
+      _merge_ff "${tracked_branch}" "${upstream}"
+   fi
+done
