@@ -1,5 +1,5 @@
 set mainfont {Terminus 11}
-set textfont {{Letter Gothic} 11}
+set textfont {Consolas 11}
 set uifont {Terminus 10 bold}
 set tabstop 4
 set findmergefiles 0
@@ -51,12 +51,13 @@ set indexcirclecolor #859900
 set circlecolors {white blue gray blue blue}
 set linkfgcolor #268bd2
 set circleoutlinecolor #073642
-set geometry(main) 1322x893+5+28
+set sortrefsbytype 1
+set geometry(main) 1337x893+5+28
 set geometry(state) normal
-set geometry(topwidth) 1322
+set geometry(topwidth) 1337
 set geometry(topheight) 306
-set geometry(pwsash0) "858 1"
-set geometry(pwsash1) "1100 1"
-set geometry(botwidth) 673
+set geometry(pwsash0) "838 1"
+set geometry(pwsash1) "1087 1"
+set geometry(botwidth) 655
 set geometry(botheight) 582
 set permviews {}

@@ -28,4 +28,8 @@ map <Leader>json :set filetype=json<CR>:syntax enable<CR>:%!python -m json.tool<
 " Disable folding in the markdown plugin
 let g:vim_markdown_folding_disabled=1
 
+" switch to tab-enabled/tab-disabled mode
+map <Leader>tabs :set noexpandtab<CR>:set tabstop=8<CR>:set shiftwidth=8<CR>
+map <Leader>notabs :set expandtab<CR>:set tabstop=3<CR>:set shiftwidth=3<CR>
+
 noremap <2-LeftMouse> *
