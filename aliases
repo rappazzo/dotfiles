@@ -1,11 +1,10 @@
 alias gitk="gitk --since='9 months ago'"
-alias rimshot='curl http://soundboard.local/play/rimshot > /dev/null 2>&1'
-alias sneeze='curl http://soundboard.local/sneeze > /dev/null 2>&1'
-alias kwong='curl http://soundboard.local/play/kwong2 > /dev/null 2>&1'
+alias rimshot='curl http://soundboard.infor.com/play/rimshot > /dev/null 2>&1'
+alias sneeze='curl http://soundboard.infor.com/sneeze > /dev/null 2>&1'
+alias kwong='curl http://soundboard.infor.com/play/kwong2 > /dev/null 2>&1'
 alias previous-git-version='ls /usr/local/Cellar/git | sort -n | tail -n 2 | head -n 1'
 alias latest-git-version='ls /usr/local/Cellar/git | sort -n | tail -n 1'
 alias flush-dns="dscacheutil -flushcache; killall -HUP mDNSResponder"
-alias win64="VBoxManage startvm Win64"
 alias m2settings="mvim ~/.m2/settings.xml"
 alias tcmigrate="modules/main/tcard/etc/migration/flyway-commandline/tc-migrate.sh migrate"
 alias file-tree="find . -print | perl -pe 's;[^/]*/;├────;g;s;├────; |;g'"
@@ -16,10 +15,6 @@ alias fetch="git-fetch-daily --all"
 alias mvim="mvim --remote-tab 2>/dev/null"
 alias pbvim='/usr/bin/mvim - 2>/dev/null'
 alias make='make CFLAGS="-Wall"' # -Wdeclaration-after-statement
-alias strike='echo -n "̶" | pbcopy' 
-alias supq='envs --user mrappazzo connect qa:supq'
-alias rctq='envs --user mrappazzo connect qa:rctq'
-alias alphaq='envs --user mrappazzo connect qa:alphaq'
 alias vpn='sudo openconnect -u mrappazzo https://vpn-am1.infor.com'
 
 #Add -N option to let it run in the background

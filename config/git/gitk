@@ -55,9 +55,9 @@ set sortrefsbytype 1
 set geometry(main) 1337x893+5+28
 set geometry(state) normal
 set geometry(topwidth) 1337
-set geometry(topheight) 306
+set geometry(topheight) 294
 set geometry(pwsash0) "838 1"
 set geometry(pwsash1) "1087 1"
 set geometry(botwidth) 655
-set geometry(botheight) 582
+set geometry(botheight) 594
 set permviews {}
