@@ -36,3 +36,4 @@ source ~/.dots/functions
 source $TOOLS_BIN/.autocomplete/zsh/.install
 # Report CPU usage for commands running longer than 10 seconds
 REPORTTIME=10
+eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
