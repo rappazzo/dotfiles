@@ -19,4 +19,4 @@ alias vpn='sudo openconnect -u mrappazzo https://vpn-am1.infor.com'
 
 #Add -N option to let it run in the background
 alias soundboard-tunnel="ssh -L 5901:127.0.0.1:5900 rappazzo@soundboard.local"
-alias smtp-tunnel="ssh -L 2525:qasmtp1b.qa.gtnexus.com:25 mrappazzo@stash.gtnexus.local"
+alias smtp-tunnel="ssh -L 2525:qasmtp1b.qa.gtnexus.com:25 mrappazzo@code.gtnexus.info"
