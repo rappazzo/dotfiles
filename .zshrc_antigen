@@ -33,6 +33,7 @@ set -o vi
 fpath=(/usr/local/share/zsh/site-functions/_git $fpath)
 source ~/.dots/aliases
 source ~/.dots/functions
+test -f ~/.dots/private-env && source ~/.dots/private-env
 source $TOOLS_BIN/.autocomplete/zsh/.install
 # Report CPU usage for commands running longer than 10 seconds
 REPORTTIME=10
