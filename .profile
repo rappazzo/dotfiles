@@ -34,3 +34,4 @@ source $TOOLS_BIN/.autocomplete/bash/.install
 # Added by install_latest_perl_osx.pl
 [ -r /Users/mike/.bashrc ] && source /Users/mike/.bashrc
 source /Users/mike/perl5/perlbrew/etc/bashrc
+export RT_USE_LOCAL=yes
