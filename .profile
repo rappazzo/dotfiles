@@ -1,11 +1,11 @@
 export PATH="/usr/local/bin:/code/tools/bin:$PATH:/usr/local/sbin"
 export EDITOR=/usr/local/bin/mvim
 export MY_USER=mrappazzo
-export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
-export VAGRANT_CWD=/code/gtnexus/development/modules/main/tcard/etc/vagrants/vagrant-14.4.0
+#export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+#export VAGRANT_CWD=/code/gtnexus/development/modules/main/tcard/etc/vagrants/vagrant-14.4.0
 set -o vi
-. ~/dots/aliases
-. ~/dots/functions
+. ~/.dots/aliases
+. ~/.dots/functions
 
 # BASH specific
 . `brew --prefix`/etc/bash_completion.d/git-completion.bash
@@ -32,6 +32,6 @@ source $TOOLS_BIN/.autocomplete/bash/.install
 #PS1='\w$(__git_ps1 " (%s)")\$ '
 
 # Added by install_latest_perl_osx.pl
-[ -r /Users/mike/.bashrc ] && source /Users/mike/.bashrc
-source /Users/mike/perl5/perlbrew/etc/bashrc
+#[ -r /Users/mike/.bashrc ] && source /Users/mike/.bashrc
+#source /Users/mike/perl5/perlbrew/etc/bashrc
 export RT_USE_LOCAL=yes
