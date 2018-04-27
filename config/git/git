@@ -1,6 +1,7 @@
 [user]
     name = Michael Rappazzo
-    email = michael.rappazzo@gtnexus.com
+	email = michael.rappazzo@infor.com
+	domain-login = mrappazzo
 [color]
     diff = auto
     status = auto
@@ -12,9 +13,11 @@
 	editor = mvim -f --nomru -c \"au VimLeave * !open -a iTerm\"
     preloadindex = true
 	pager = 
+	whitespace = fix
+   disambiguate = commit
 [diff] 
     tool = araxis
-    #external = git-difftool--helper
+   indentHeuristic = true
 [difftool]
     prompt=false   
     keepBackup = false
@@ -34,12 +37,14 @@
 	helper = osxkeychain
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
-[guitool "Revert to HEAD"]
-	cmd = git checkout HEAD -- \"$FILENAME\"
+[feature-rebase]
+	gradle-prompt = Yes
+	compile-prompt = No
+	push-prompt = Yes
 [fetch-daily]
-	fetch-dirs = /code/gtnexus/development
-	ff-refs = /code/gtnexus/development
-	base-of = /code/gtnexus/development
+	fetch-dirs = /code/gtnexus/devl
+	ff-refs = /code/gtnexus/devl
+	base-of = /code/gtnexus/devl
 [sendemail]
    smtpEncryption = tls
    smtpServer = smtp.gmail.com
@@ -50,4 +55,37 @@
 	autoSquash = true
 [pack]
 	window = 250
-	depth = 250
+	depth = 50
+[transfer]
+	fsckobjects = true
+[fetch]
+	fsckobjects = true
+[receive]
+	fsckObjects = true
+[bug-branch-promote]
+	compile-prompt = No
+[log]
+	mailmap = true
+[patch]
+	auto-launch = true
+[interactive]
+	diffFilter = diff-highlight
+	default-instance = linux
+[codeflow]
+	compile-prompt = No
+	offer-amend = true
+[status]
+	short = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[lfte]
+	disconnect-all-when-ambiguous = true
+[eclipse]
+	path = /Users/mike/Applications/eclipse/instance/java-oxygen/Eclipse.app
+[guitool "Revert to HEAD"]
+	cmd = git checkout HEAD -- \"$FILENAME\"
+[guitool "git fixup"]
+	cmd = git fixup
