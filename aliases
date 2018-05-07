@@ -12,7 +12,7 @@ alias git-conflicts="git ls-files --unmerged | awk '{print \$4}' | sort -u | wc 
 alias last10='git log -n 10 --format="%h [%Cblue%><(20)%an%Creset] %s"|cat'
 alias git-feature-folder='git ls-remote --heads feature | awk "{print \$2}" | sed "s:refs/heads/::" | perl -pe "s:/[\w\d_-]+\$::" | sort -u | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|--\1/"'
 alias fetch="git-fetch-daily --all"
-alias pbvim='/usr/bin/mvim - 2>/dev/null'
+alias pbvim='/usr/local/bin/mvim - 2>/dev/null'
 alias make='make CFLAGS="-Wall"' # -Wdeclaration-after-statement
 alias vpn='sudo openconnect -u mrappazzo https://vpn-am1.infor.com'
 alias dumper='echo "#use Data::Dumper; printf \"%s\\\\n\", Data::Dumper->Dump( [ \$data ] , [ \"data\" ] );"'
