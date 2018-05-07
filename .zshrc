@@ -41,3 +41,6 @@ REPORTTIME=10
 
 #eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 export RT_USE_LOCAL=yes
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
