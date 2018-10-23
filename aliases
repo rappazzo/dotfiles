@@ -6,7 +6,6 @@ alias previous-git-version='ls /usr/local/Cellar/git | sort -n | tail -n 2 | hea
 alias latest-git-version='ls /usr/local/Cellar/git | sort -n | tail -n 1'
 alias flush-dns="dscacheutil -flushcache; killall -HUP mDNSResponder"
 alias m2settings="mvim ~/.m2/settings.xml"
-alias tcmigrate="modules/main/tcard/etc/migration/flyway-commandline/tc-migrate.sh migrate"
 alias file-tree="find . -print | perl -pe 's;[^/]*/;├────;g;s;├────; |;g'"
 alias git-conflicts="git ls-files --unmerged | awk '{print \$4}' | sort -u | wc -l"
 alias last10='git log -n 10 --format="%h [%Cblue%><(20)%an%Creset] %s"|cat'
@@ -18,6 +17,10 @@ alias vpn='sudo openconnect -u mrappazzo https://vpn-am1.infor.com'
 alias dumper='echo "#use Data::Dumper; printf \"%s\\\\n\", Data::Dumper->Dump( [ \$data ] , [ \"data\" ] );"'
 alias gradle-check='gradle-check --invoke'
 alias update-git-graph='git show-ref -s | git commit-graph write --stdin-commits'
+alias git-upstream='git for-each-ref refs/heads/$(git symbolic-ref --short HEAD) --format="%(upstream:short)"'
+alias git-stage-for-rebase='for file ($(git diff --name-only)); do git add $file; git fixup --no-verify --no-edit; done'
+alias yourkit='YJP_JAVA_HOME=/code/gtnexus/devl-rct/jdk/osx64 /Applications/YourKit-Java-Profiler-2016.02.app/Contents/Resources/bin/yjp.sh >/dev/null 2>&1 &'
+alias first-commit="git log --format=full 331c2a33df805a1487acc2aef38d0387abeb2d16"
 
 #Add -N option to let it run in the background
 alias soundboard-tunnel="ssh -L 5901:127.0.0.1:5900 rappazzo@soundboard.local"
