@@ -20,7 +20,7 @@ source $TOOLS_BIN/.autocomplete/zsh/.install
 
 zstyle ':completion:::git:*' script /usr/local/etc/bash_completion.d/git-completion.bash
 #fpath is the search path for function definitions
-fpath=(/usr/local/share/zsh/site-functions/_git $fpath)
+fpath=(/usr/local/etc/bash_completion.d/docker /usr/local/share/zsh/site-functions/_git $fpath)
 
 test -f ~/.dots/private-env && source ~/.dots/private-env
 
