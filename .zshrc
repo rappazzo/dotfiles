@@ -36,8 +36,8 @@ HISTSIZE=10000
 SAVEHIST=9000
 HISTFILE=~/.zsh_history
 
-# Report CPU usage for commands running longer than 10 seconds
-REPORTTIME=10
+# Report CPU usage for commands running longer than 20 seconds
+REPORTTIME=20
 
 #eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 export RT_USE_LOCAL=yes
