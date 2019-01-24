@@ -29,7 +29,12 @@ function setup_prompts {
       echo -ne "\e]1;$(_fishy_collapsed_wd)\a"
       if [ -e .git ] || git rev-parse --git-dir >/dev/null 2>&1; then
          git_stat_info=$(git_prompt_status)
-         RPROMPT="%{$fg[red]%}%(?..⏎)%{$reset_color%}${git_stat_info}%{$reset_color%}"
+         gradle-check --no-invoke >/dev/null 2>&1
+         gradle_stat=$?
+         if [[ ${gradle_stat} > 0 && ${gradle_stat} != 127 && ${gradle_stat} != 92 ]]; then
+            gradle_info=" 🐘"
+         fi
+         RPROMPT="%{$fg[red]%}%(?..⏎)%{$reset_color%}${git_stat_info}${gradle_info}%{$reset_color%}"
 
          # Save the prompt in a temp file so the parent shell can read it.
          printf "%s" $RPROMPT >${TMPPREFIX}/prompt.$$
