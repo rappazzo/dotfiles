@@ -1,0 +1,36 @@
+#!/usr/bin/env perl
+
+# Doesn't support renames or adds yet -- prompt?
+
+#sorted by comment
+chomp(my @changed_files = `git diff --name-only --diff-filter=a`);
+my $by_fixup_commit;
+my $file_target;
+my @missing;
+
+for my $changed_file (@changed_files) {
+   chomp (my $fixup_commit=`git log --format=%H -n 1 -- $changed_file`);
+   if ($fixup_commit) {
+      push @{$by_fixup_commit->{$fixup_commit}}, $changed_file;
+      $file_target->{$changed_file} = $fixup_commit;
+   } else {
+      push @missing, $changed_file;
+   }
+}
+
+if (@missing) {
+   #prompt?
+   my $files = join("\n - ", @missing);
+   print STDERR "WARNING:  Unable to determine fixup target for the following files:\n - $files\n";
+}
+
+for my $commit (keys %$by_fixup_commit) {
+   for my $file (@{$by_fixup_commit->{$commit}}) {
+      system "git", "add", $file;
+   }
+   system "git", "fixup", "--no-verify", "--no-edit";
+}
+
+printf "\nStaged %d commits:\n", scalar(keys %$by_fixup_commit);
+system "git", "log",  '@{upstream}..HEAD';
+# for file ($(git diff --name-only)); do git add $file; git fixup --no-verify --no-edit; done
