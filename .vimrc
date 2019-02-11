@@ -1,4 +1,3 @@
-execute pathogen#infect()
 set ic                     " Ignore Case
 set nowrap                 " Don't wrap lines 
 set clipboard=unnamed      " Use the system clipboard
