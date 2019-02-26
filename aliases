@@ -13,7 +13,7 @@ alias git-feature-folder='git ls-remote --heads feature | awk "{print \$2}" | se
 alias fetch="git-fetch-daily --all"
 alias pbvim='/usr/local/bin/mvim - 2>/dev/null'
 alias make='make CFLAGS="-Wall"' # -Wdeclaration-after-statement
-alias vpn='sudo openconnect -u mrappazzo https://vpn-am1.infor.com'
+alias vpn='printf "sudo " && sudo openconnect -u mrappazzo https://vpn-am1.infor.com'
 alias dumper='echo "#use Data::Dumper; printf \"%s\\\\n\", Data::Dumper->Dump( [ \$data ] , [ \"data\" ] );"'
 alias gradle-check='gradle-check --invoke'
 alias update-git-graph='git show-ref -s | git commit-graph write --stdin-commits'
