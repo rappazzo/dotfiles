@@ -12,6 +12,10 @@ source ~/.dots/functions
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 set -o vi
 
 export TOOLS_BIN=/code/tools/bin
