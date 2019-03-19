@@ -1,0 +1,69 @@
+#!/bin/bash
+
+here=$(dirname $0)
+
+# from:
+#    https://github.com/pi-hole/docker-pi-hole/blob/master/README.md
+
+function start_pihole {
+   docker run -d \
+      --name pihole \
+      -p 53:53/tcp -p 53:53/udp \
+      -p 80:80 \
+      -p 443:443 \
+      -e TZ="America/New_York" \
+      -v "${here}/../pihole/etc/:/etc/pihole/" \
+      -v "${here}/../pihole/dnsmasq.d/:/etc/dnsmasq.d/" \
+      --dns=127.0.0.1 --dns=1.1.1.1 \
+      --restart=unless-stopped \
+      pihole/pihole:latest
+
+   printf 'Starting up pihole container '
+   for i in $(seq 1 20); do
+      if [ "$(docker inspect -f "{{.State.Health.Status}}" pihole)" == "healthy" ] ; then
+         printf "[DONE]\n"
+         break
+      else
+         sleep 3
+         printf '.'
+      fi
+
+      if [ $i -eq 20 ] ; then
+         printf "[ERROR]\n"
+         echo -e "Timed out waiting for Pi-hole start start, consult check your container logs for more info (\`docker logs pihole\`)"
+         exit 1
+      fi
+   done
+}
+function reset_password {
+   echo "Set the password for the pi-hole web page"
+   docker exec -it pihole pihole -a -p
+}
+
+function stop_pihole {
+   printf "stopping pi-hole....."
+   docker container stop pihole >/dev/null
+   printf ".."
+   docker container rm pihole >/dev/null
+   printf "[DONE]\n"
+}
+
+mode=$1
+if [[ $mode == "start" ]]; then
+   start_pihole
+   reset_password
+
+elif [[ $mode == "stop" ]]; then
+   stop_pihole
+
+elif [[ $mode == "reset-password" ]]; then
+   reset_password
+
+else 
+   printf "Usage: $0 <mode>\n"
+   printf "   Where 'mode' is one of:\n"
+   printf "      start\n"
+   printf "      stop\n"
+   printf "      reset-password\n"
+
+fi

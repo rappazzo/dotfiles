@@ -3,3 +3,5 @@
 private-env
 vim/temp
 vim/.netrwhist
+pihole/etc
+pihole/dnsmasq.d
