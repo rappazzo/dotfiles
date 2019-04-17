@@ -12,10 +12,6 @@ source ~/.dots/functions
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
 set -o vi
 
 export TOOLS_BIN=/code/tools/bin
@@ -32,7 +28,6 @@ export EDITOR=/usr/local/bin/mvim
 export MY_USER=mrappazzo
 
 #export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-export VAGRANT_CWD=/code/gtnexus/development/modules/main/tcard/etc/vagrants/unittest
 #export STUDIO_JDK=/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk
 
 # HISTORY
@@ -40,8 +35,12 @@ HISTSIZE=10000
 SAVEHIST=9000
 HISTFILE=~/.zsh_history
 
+source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 # Report CPU usage for commands running longer than 20 seconds
-REPORTTIME=20
+#REPORTTIME=20
 
 #eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 export RT_USE_LOCAL=yes
