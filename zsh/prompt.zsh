@@ -41,6 +41,10 @@ function setup_prompts {
 
          # Signal the parent shell to update the prompt.
          kill -s USR2 $$
+      else
+         RPROMPT="%{$fg[red]%}%(?..⏎)%{$reset_color%}"
+         printf "%s" $RPROMPT >${TMPPREFIX}/prompt.$$
+         kill -s USR2 $$
       fi
    }
 
