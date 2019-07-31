@@ -1,5 +1,12 @@
 #!/usr/bin/env perl
 
+my $range = '$(feature-base)..HEAD';
+if ($ARGV[1] eq "--base") {
+   shift @ARGV;
+   $range = shift @ARGV;
+   $range .= "..HEAD" unless $range =~ /\.\./;
+}
+
 # Doesn't support renames or adds yet -- prompt?
 
 #sorted by comment
@@ -9,7 +16,7 @@ my $file_target;
 my @missing;
 
 for my $changed_file (@changed_files) {
-   chomp (my $fixup_commit=`git log --format=%H -n 1 -- $changed_file`);
+   chomp (my $fixup_commit=`git log --format=%H -n 1 $range -- $changed_file`);
    if ($fixup_commit) {
       push @{$by_fixup_commit->{$fixup_commit}}, $changed_file;
       $file_target->{$changed_file} = $fixup_commit;
