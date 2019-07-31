@@ -5,6 +5,10 @@ function only-my-branch {
    git log $1 --not $( git show-ref --heads | cut -d' ' -f2 | grep -v "^refs/heads/$1" )
 }
 
+function named {
+   find . -type f -name $1 -print -quit | cut -c3-
+}
+
 function cdup {
    newdir="${PWD/\/$1\/*/}/$1"
    if [[ -d "$newdir" ]]; then
