@@ -1,4 +1,5 @@
-alias gitk="gitk --since='9 months ago'"
+alias gka='gitk --all --since="9 months ago" &'
+alias gkl='gitk --since="2 years ago" &'
 alias rimshot='curl http://soundboard.infor.com/play/rimshot > /dev/null 2>&1'
 alias sneeze='curl http://soundboard.infor.com/sneeze > /dev/null 2>&1'
 alias kwong='curl http://soundboard.infor.com/play/kwong2 > /dev/null 2>&1'
@@ -14,6 +15,7 @@ alias fetch="git-fetch-daily --all"
 alias pbvim='/usr/local/bin/mvim - 2>/dev/null'
 alias make='make CFLAGS="-Wall"' # -Wdeclaration-after-statement
 alias vpn='cred https://mrappazzo@code.gtnexus.info --stdout | sudo openconnect --user mrappazzo --passwd-on-stdin --pid-file="$HOME/.openconnect.pid" https://vpn-am1.infor.com'
+alias vpn-eu='cred https://mrappazzo@code.gtnexus.info --stdout | sudo openconnect --user mrappazzo --passwd-on-stdin --pid-file="/Users/mike/.openconnect.pid" https://vpn-emea.infor.com'
 #   test -f "$HOME/.openconnect.pid" && sudo kill -2 $(cat "$HOME/.openconnect.pid") && rm -f "$HOME/.openconnect.pid"
 alias dumper='echo "#use Data::Dumper; printf \"%s\\\\n\", Data::Dumper->Dump( [ \$data ] , [ \"data\" ] );"'
 alias gradle-check='gradle-check --invoke'
