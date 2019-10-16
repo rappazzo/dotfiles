@@ -1,8 +1,8 @@
-export PATH="/usr/local/bin:/code/tools/bin:$PATH:/usr/local/sbin"
+export TOOLS_BIN=$HOME/code/tools/bin
+export PATH="/usr/local/bin:$TOOLS_BIN:$PATH:/usr/local/sbin"
 export EDITOR=/usr/local/bin/mvim
 export MY_USER=mrappazzo
 #export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
-#export VAGRANT_CWD=/code/gtnexus/development/modules/main/tcard/etc/vagrants/vagrant-14.4.0
 set -o vi
 . ~/.dots/aliases
 . ~/.dots/functions
@@ -26,7 +26,6 @@ BLUE="\[\033[0;36m\]"
 WHITE="\[\033[0;39m\]"
 
 PS1="$BLUE\$(date +%H:%M) $BLUE\w$YELLOW \$(parse_git_branch)$WHITE\n$ $BLUE"
-export TOOLS_BIN=/code/tools/bin
 source $TOOLS_BIN/.autocomplete/bash/.install
 #PS1="$RED\$(date +%H:%M) \W$YELLOW \$(parse_git_branch)"
 #PS1='\w$(__git_ps1 " (%s)")\$ '

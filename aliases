@@ -14,8 +14,8 @@ alias git-feature-folder='git ls-remote --heads feature | awk "{print \$2}" | se
 alias fetch="git-fetch-daily --all"
 alias pbvim='/usr/local/bin/mvim - 2>/dev/null'
 alias make='make CFLAGS="-Wall"' # -Wdeclaration-after-statement
-alias vpn='cred https://mrappazzo@code.gtnexus.info --stdout | sudo openconnect --user mrappazzo --passwd-on-stdin --pid-file="$HOME/.openconnect.pid" https://vpn-am1.infor.com'
-alias vpn-eu='cred https://mrappazzo@code.gtnexus.info --stdout | sudo openconnect --user mrappazzo --passwd-on-stdin --pid-file="/Users/mike/.openconnect.pid" https://vpn-emea.infor.com'
+alias vpn='cred https://mrappazzo@code.gtnexus.info --stdout | sudo openconnect --script=$HOME/.dots/private/vpnc-script.sh --user mrappazzo --passwd-on-stdin --pid-file="$HOME/.openconnect.pid" https://vpn-am1.infor.com'
+alias vpn-eu='cred https://mrappazzo@code.gtnexus.info --stdout | sudo openconnect --script=$HOME/.dots/private/vpnc-script.sh --user mrappazzo --passwd-on-stdin --pid-file="/Users/mike/.openconnect.pid" https://vpn-emea.infor.com'
 #   test -f "$HOME/.openconnect.pid" && sudo kill -2 $(cat "$HOME/.openconnect.pid") && rm -f "$HOME/.openconnect.pid"
 alias dumper='echo "#use Data::Dumper; printf \"%s\\\\n\", Data::Dumper->Dump( [ \$data ] , [ \"data\" ] );"'
 alias gradle-check='gradle-check --invoke'
@@ -24,6 +24,8 @@ alias git-upstream='git for-each-ref refs/heads/$(git symbolic-ref --short HEAD)
 alias yourkit='YJP_JAVA_HOME=/code/gtnexus/devl-rct/jdk/osx64 /Applications/YourKit-Java-Profiler-2016.02.app/Contents/Resources/bin/yjp.sh >/dev/null 2>&1 &'
 alias first-commit="git log --format=full 331c2a33df805a1487acc2aef38d0387abeb2d16"
 alias branch-age='git for-each-ref refs/heads --format="%(committerdate:short)  %(refname:short)" | sort'
+alias envs='sudo envs'
+alias path="echo $PATH | tr ':' '\n'"
 
 #Add -N option to let it run in the background
 alias soundboard-tunnel="ssh -L 5901:127.0.0.1:5900 rappazzo@soundboard.local"
