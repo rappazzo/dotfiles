@@ -14,7 +14,7 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 set -o vi
 
-export TOOLS_BIN=/code/tools/bin
+export TOOLS_BIN=$HOME/code/tools/bin
 export PATH="$TOOLS_BIN:$PATH:$HOME/.dots/bin"
 source $TOOLS_BIN/.autocomplete/zsh/.install
 
