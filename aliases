@@ -15,7 +15,7 @@ alias fetch="git-fetch-daily --all"
 alias pbvim='/usr/local/bin/mvim - 2>/dev/null'
 alias make='make CFLAGS="-Wall"' # -Wdeclaration-after-statement
 alias vpn='cred https://mrappazzo@code.gtnexus.info --stdout | sudo openconnect --script=$HOME/.dots/private/vpnc-script.sh --user mrappazzo --passwd-on-stdin --pid-file="$HOME/.openconnect.pid" https://vpn-am1.infor.com'
-alias vpn-eu='cred https://mrappazzo@code.gtnexus.info --stdout | sudo openconnect --script=$HOME/.dots/private/vpnc-script.sh --user mrappazzo --passwd-on-stdin --pid-file="/Users/mike/.openconnect.pid" https://vpn-emea.infor.com'
+alias vpn-eu='cred https://mrappazzo@code.gtnexus.info --stdout | sudo openconnect --script=$HOME/.dots/private/vpnc-script.sh --user mrappazzo --passwd-on-stdin --pid-file="$HOME/.openconnect.pid" https://vpn-emea.infor.com'
 #   test -f "$HOME/.openconnect.pid" && sudo kill -2 $(cat "$HOME/.openconnect.pid") && rm -f "$HOME/.openconnect.pid"
 alias dumper='echo "#use Data::Dumper; printf \"%s\\\\n\", Data::Dumper->Dump( [ \$data ] , [ \"data\" ] );"'
 alias gradle-check='gradle-check --invoke'
@@ -29,4 +29,5 @@ alias path="echo $PATH | tr ':' '\n'"
 
 #Add -N option to let it run in the background
 alias soundboard-tunnel="ssh -L 5901:127.0.0.1:5900 rappazzo@soundboard.local"
-alias smtp-tunnel="ssh -L 2525:qasmtp1b.qa.gtnexus.com:25 mrappazzo@code.gtnexus.info"
+alias smtp-tunnel="sudo envs connect my:smtp"
+alias smtp-tunnel_old="ssh -L 2525:qasmtp1b.qa.gtnexus.com:25 mrappazzo@code.gtnexus.info"
