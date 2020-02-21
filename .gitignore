@@ -8,3 +8,4 @@ pihole/dnsmasq.d
 config/configstore/update-notifier-npm.json
 private
 config/karabiner/automatic_backups/
+config/infor
