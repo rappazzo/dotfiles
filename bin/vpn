@@ -1,0 +1,63 @@
+#!/bin/bash
+
+red='\033[0;31m'
+NC='\033[0m'
+
+function check_existing_process {
+   local force=$1
+   if [[ -e "$HOME/.openconnect.pid" ]]; then
+      local pid=$(<"$HOME/.openconnect.pid")
+      if ps aux | grep openconnect | grep $pid --quiet; then
+         local choice="Yes"
+         if [[ $force -ne 1 ]]; then
+            printf "There is currently a VPN process running.  Would you like to stop it [Yes]? "
+            read choice
+         fi
+         if echo "$choice" | egrep -v "[Nn]o?" --quiet; then
+            sudo killall -SIGINT openconnect
+            #sudo kill $pid 2>/dev/null
+         else
+            exit 0
+         fi
+      fi
+   fi
+}
+
+dir="$(cd $(dirname "$0"); pwd)"
+private="$dir/../private"
+
+choose=0
+for arg in $@; do
+   if [[ "$arg" == "--choose" ]]; then
+      choose=1
+   fi
+   if [[ "$arg" == "--stop" || "$arg" == "stop" ]]; then
+      check_existing_process 1
+      exit 0
+   fi
+done
+
+current_vpn_address=''
+if [[ -e "$private/vpn-address" ]]; then
+   current_vpn_address=$(<"$private/vpn-address")
+fi
+
+if [[ "$current_vpn_address" == "" || $choose -eq 1 ]]; then
+   choose-vpn
+   current_vpn_address=$(<"$private/vpn-address")
+fi
+
+if [[ "$current_vpn_address" == "" ]]; then
+   echo -e "${red}FATAL${NC}: no VPN chosen"
+   exit 1
+fi
+
+check_existing_process
+
+cred https://mrappazzo@code.gtnexus.info --stdout | \
+   sudo openconnect \
+      --script=$HOME/.dots/private/vpnc-script.sh \
+      --user mrappazzo --passwd-on-stdin \
+      --pid-file="$HOME/.openconnect.pid" \
+      --background \
+      ${current_vpn_address}
