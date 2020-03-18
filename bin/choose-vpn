@@ -1,0 +1,86 @@
+#!/bin/bash
+
+dir="$(cd $(dirname "$0"); pwd)"
+private="$dir/../private"
+if [[ ! -d "$private" ]]; then
+   mkdir "$private"
+fi
+
+config_file=$(ls -t /opt/cisco/anyconnect/profile | egrep "\.xml$" | head -n 1)
+if [[ ! -e "/opt/cisco/anyconnect/profile/$config_file" ]]; then
+   echo >&2 "Unable to find VPN config file"
+   exit 1
+fi
+
+hosts=()
+addresses=()
+host_name=''
+host_address=''
+
+current_vpn_address=
+if [[ -e "$private/vpn-address" ]]; then
+   current_vpn_address=$(<"$private/vpn-address")
+fi
+current_vpn='<None>'
+
+listen=0
+while IFS= read -r line; do
+   if echo -n "$line" | egrep --quiet '<HostEntry>' 2>/dev/null; then
+      listen=1
+   elif echo -n "$line" | egrep --quiet '</HostEntry>' 2>/dev/null; then
+      listen=0
+      host_name=''
+      host_address=''
+   fi
+   if [[ $listen -eq 1 ]]; then
+      if echo -n "$line" | egrep --quiet '<HostName>.*?</HostName>' 2>/dev/null; then
+         host_name=${line#*\<HostName\>}
+         host_name=${host_name%\<\/HostName\>*}
+      fi
+      if echo -n "$line" | egrep --quiet '<HostAddress>.*?</HostAddress>' 2>/dev/null; then
+         host_address=${line#*\<HostAddress\>}
+         host_address=${host_address%\<\/HostAddress\>*}
+      fi
+      if [[ $host_name != "" && $host_address != "" ]]; then
+         if [[ "$host_address" == "$current_vpn_address" ]]; then
+            current_vpn=$(printf "%s (%s)" "$host_name" "$host_address")
+         fi
+         hosts+=( "$host_name" )
+         addresses+=( "$host_address" )
+         listen=0
+         host_name=''
+         host_address=''
+      fi
+   fi
+done <"/opt/cisco/anyconnect/profile/$config_file"
+
+spaces="                     "
+printf "Current VPN:  %s\n" "$current_vpn"
+for index in "${!hosts[@]}"; do
+   printf "%2s. %s %s => %s\n" $((index+1)) "${hosts[$index]}" "${spaces:${#hosts[$index]}}" "${addresses[$index]}"
+done
+
+printf "> "
+read choice
+selected=-1
+if [[ $choice != "" ]]; then
+   if echo -n $choice | egrep --quiet '^[1-9][0-9]*$'; then
+      selected=$((choice-1))
+   else
+      for index in "${!hosts[@]}"; do
+         if echo -n "${hosts[$index]}" | grep --quiet "$choice" 2>/dev/null; then
+            selected=$index
+            break
+         elif echo -n "${addresses[$index]}" | grep --quiet "$choice" 2>/dev/null; then
+            selected=$index
+            break
+         fi
+      done
+   fi
+fi
+if [[ $selected -ge 0 ]]; then
+   printf "Selected: %s (%s)\n" "${hosts[$selected]}" "${addresses[$selected]}"
+   echo "${addresses[$selected]}" >"$private/vpn-address"
+else
+   printf "VPN not changed.  Using %s\n" "$current_vpn"
+fi
