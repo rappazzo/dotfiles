@@ -6,7 +6,14 @@ function only-my-branch {
 }
 
 function named {
-   find . -type f -name $1 -print -quit | cut -c3-
+   to_find=$1
+   if echo $to_find | grep -v --quiet '\.'; then
+      to_find="$1.java"
+   fi
+   find . -type f -name $to_find -print -quit | cut -c3-
+}
+function blame {
+   git gui blame 2>/dev/null -- $(named $1) &
 }
 
 function cdup {
