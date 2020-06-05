@@ -55,6 +55,8 @@ while IFS= read -r line; do
 done <"/opt/cisco/anyconnect/profile/$config_file"
 
 spaces="                     "
+IFS=$'\n' hosts=($(sort <<<"${hosts[*]}"))
+unset IFS
 printf "Current VPN:  %s\n" "$current_vpn"
 for index in "${!hosts[@]}"; do
    printf "%2s. %s %s => %s\n" $((index+1)) "${hosts[$index]}" "${spaces:${#hosts[$index]}}" "${addresses[$index]}"
