@@ -5,6 +5,9 @@ function only-my-branch {
    git log $1 --not $( git show-ref --heads | cut -d' ' -f2 | grep -v "^refs/heads/$1" )
 }
 
+function gk-reflog {
+   gitk --all $(git reflog | cut -c1-12) -- $@ &
+}
 function named {
    to_find=$1
    if echo $to_find | grep -v --quiet '\.'; then
