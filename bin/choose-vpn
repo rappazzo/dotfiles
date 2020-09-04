@@ -1,88 +1,92 @@
-#!/bin/bash
+#!/usr/bin/env perl
 
-dir="$(cd $(dirname "$0"); pwd)"
-private="$dir/../private"
-if [[ ! -d "$private" ]]; then
-   mkdir "$private"
-fi
+use strict;
+use Cwd 'abs_path';
+use File::Basename;
 
-config_file=$(ls -t /opt/cisco/anyconnect/profile | egrep "\.xml$" | head -n 1)
-if [[ ! -e "/opt/cisco/anyconnect/profile/$config_file" ]]; then
-   echo >&2 "Unable to find VPN config file"
-   exit 1
-fi
+chomp(my $this_script = `readlink $0`);
+$this_script = $0 unless ($this_script);
+my $dir = dirname($this_script);
+my $private = abs_path("$dir/../private");
 
-hosts=()
-addresses=()
-host_name=''
-host_address=''
+if (! -d $private) {
+   `mkdir "$private"`;
+}
 
-current_vpn_address=
-if [[ -e "$private/vpn-address" ]]; then
-   current_vpn_address=$(<"$private/vpn-address")
-fi
-current_vpn='<None>'
+opendir my $dh, "/opt/cisco/anyconnect/profile" or die "Cannot open directory: $!";
+my @config_files = grep {/\.xml$/} readdir $dh;
+closedir $dh;
+if ( ! @config_files ) {
+   printf STDERR "Unable to find VPN config file\n";
+   exit 1;
+}
+my ($config_file) = sort {(stat("/opt/cisco/anyconnect/profile/$b"))[9] <=> (stat("/opt/cisco/anyconnect/profile/$a"))[9]} @config_files;
 
-listen=0
-while IFS= read -r line; do
-   if echo -n "$line" | egrep --quiet '<HostEntry>' 2>/dev/null; then
-      listen=1
-   elif echo -n "$line" | egrep --quiet '</HostEntry>' 2>/dev/null; then
-      listen=0
-      host_name=''
-      host_address=''
-   fi
-   if [[ $listen -eq 1 ]]; then
-      if echo -n "$line" | egrep --quiet '<HostName>.*?</HostName>' 2>/dev/null; then
-         host_name=${line#*\<HostName\>}
-         host_name=${host_name%\<\/HostName\>*}
-      fi
-      if echo -n "$line" | egrep --quiet '<HostAddress>.*?</HostAddress>' 2>/dev/null; then
-         host_address=${line#*\<HostAddress\>}
-         host_address=${host_address%\<\/HostAddress\>*}
-      fi
-      if [[ $host_name != "" && $host_address != "" ]]; then
-         if [[ "$host_address" == "$current_vpn_address" ]]; then
-            current_vpn=$(printf "%s (%s)" "$host_name" "$host_address")
-         fi
-         hosts+=( "$host_name" )
-         addresses+=( "$host_address" )
-         listen=0
-         host_name=''
-         host_address=''
-      fi
-   fi
-done <"/opt/cisco/anyconnect/profile/$config_file"
+my @hosts;
+my @addresses;
 
-spaces="                     "
-IFS=$'\n' hosts=($(sort <<<"${hosts[*]}"))
-unset IFS
-printf "Current VPN:  %s\n" "$current_vpn"
-for index in "${!hosts[@]}"; do
-   printf "%2s. %s %s => %s\n" $((index+1)) "${hosts[$index]}" "${spaces:${#hosts[$index]}}" "${addresses[$index]}"
-done
+my $current_vpn_address;
+if ( -e "$private/vpn-address") {
+   open (my $reader, "<", "$private/vpn-address");
+   chomp($current_vpn_address = do { local $/; <$reader> });
+   close $reader;
+}
 
-printf "> "
-read choice
-selected=-1
-if [[ $choice != "" ]]; then
-   if echo -n $choice | egrep --quiet '^[1-9][0-9]*$'; then
-      selected=$((choice-1))
-   else
-      for index in "${!hosts[@]}"; do
-         if echo -n "${hosts[$index]}" | grep --quiet "$choice" 2>/dev/null; then
-            selected=$index
-            break
-         elif echo -n "${addresses[$index]}" | grep --quiet "$choice" 2>/dev/null; then
-            selected=$index
-            break
-         fi
-      done
-   fi
-fi
-if [[ $selected -ge 0 ]]; then
-   printf "Selected: %s (%s)\n" "${hosts[$selected]}" "${addresses[$selected]}"
-   echo "${addresses[$selected]}" >"$private/vpn-address"
-else
-   printf "VPN not changed.  Using %s\n" "$current_vpn"
-fi
+my $listen = 0;
+my $hosts;
+my $host;
+my $current_host;
+open my $reader, "<", "/opt/cisco/anyconnect/profile/$config_file";
+while (<$reader>) {
+   if (/<HostEntry>/) {
+      $listen = 1;
+   } elsif (/<\/HostEntry>/) {
+      $listen = 0;
+      $host = {};
+   }
+   if ($listen) {
+      my $line = $_;
+      if ($line =~ /<HostName>(.*?)<\/HostName>/) {
+         $host->{name} = $1;
+      } elsif ($line =~ /<HostAddress>(.*?)<\/HostAddress>/) {
+         $host->{address} = $1;
+      }
+   }
+   if ($host->{name} && $host->{address}) {
+      if ($host->{address} eq $current_vpn_address) {
+         $current_host = { %$host };
+      }
+      $hosts->{$host->{name}} = $host;
+      $listen = 0;
+      $host = {};
+   }
+}
+
+printf "Current VPN:  %s\n", $current_host ? $current_host->{name} : '<None>';
+my $index = 1;
+for my $host_name (sort keys %$hosts) {
+   $hosts->{$host_name}->{index} = $index;
+   printf "  %-22s => %s\n", $host_name, $hosts->{$host_name}->{address};
+   $index++;
+}
+
+printf "> ";
+chomp (my $choice = <STDIN>);
+my $selected;
+if ($choice) {
+   for my $host_name (sort keys %$hosts) {
+      if ($host_name =~ /$choice/ || $hosts->{$host_name}->{address} =~ /$choice/ || $hosts->{$host_name}->{index} =~ /$choice/) {
+         $selected = $hosts->{$host_name};
+         last;
+      }
+   }
+}
+if ($selected) {
+   printf "Selected: %s (%s)\n", $selected->{name}, $selected->{address};
+   printf "   >> writing to %s\n", "$private/vpn-address";
+   open my $writer, ">", "$private/vpn-address";
+   print $writer $selected->{address};
+   close $writer;
+} else {
+   printf "VPN not changed.  Using '%s'\n", $current_host ? $current_host->{name} : '<None>';
+}
