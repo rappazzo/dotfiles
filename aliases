@@ -19,7 +19,7 @@ alias dumper='echo "#use Data::Dumper; printf \"%s\\\\n\", Data::Dumper->Dump( [
 alias gradle-check='gradle-check --invoke'
 alias update-git-graph='git show-ref -s | git commit-graph write --stdin-commits'
 alias git-upstream='git for-each-ref refs/heads/$(git symbolic-ref --short HEAD) --format="%(upstream:short)"'
-alias yourkit='YJP_JAVA_HOME=/code/gtnexus/devl-rct/jdk/osx64 /Applications/YourKit-Java-Profiler-2016.02.app/Contents/Resources/bin/yjp.sh >/dev/null 2>&1 &'
+alias yourkit='YJP_JAVA_HOME=/Users/mike/code/gtnexus/devl-rct/jdk/osx64 /Applications/YourKit-Java-Profiler-2016.02.app/Contents/Resources/bin/yjp.sh >/dev/null 2>&1 &'
 alias first-commit="git log --format=full 331c2a33df805a1487acc2aef38d0387abeb2d16"
 alias branch-age='git for-each-ref refs/heads --format="%(committerdate:short)  %(refname:short)" | sort'
 alias envs='sudo envs'
