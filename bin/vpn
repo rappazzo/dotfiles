@@ -54,7 +54,7 @@ fi
 
 check_existing_process
 
-cred https://mrappazzo@code.gtnexus.info --stdout | \
+( echo $(cred https://mrappazzo@code.gtnexus.info --stdout); oathtool -b --totp $(cred infor-mfa --stdout) ) | \
    sudo openconnect \
       --script=$HOME/.dots/private/vpnc-script.sh \
       --user mrappazzo --passwd-on-stdin \
