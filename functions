@@ -30,7 +30,13 @@ function cdup {
 function findin {
    egrep . --include="$1" --ignore-case --line-number --recursive --regexp="$2"
 }
-    
+function infor-mfa {
+   secret=$(cred infor-mfa --stdout)
+   mfa_key=$(oathtool -b --totp $secret)
+   echo $mfa_key | pbcopy
+   echo "MFA value ($mfa_key) copied to clipboard"
+}
+
 #shell=$(echo $0)
 #echo $shell
 if which compdef > /dev/null 2>&1; then
