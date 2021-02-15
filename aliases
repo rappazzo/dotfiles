@@ -15,7 +15,8 @@ alias fetch="git-fetch-daily --all"
 alias pbvim='/usr/local/bin/mvim - 2>/dev/null'
 alias make='make CFLAGS="-Wall"' # -Wdeclaration-after-statement
 #   test -f "$HOME/.openconnect.pid" && sudo kill -2 $(cat "$HOME/.openconnect.pid") && rm -f "$HOME/.openconnect.pid"
-alias dumper='echo "#use Data::Dumper; printf \"%s\\\\n\", Data::Dumper->Dump( [ \$data ] , [ \"data\" ] );"'
+alias dumper_old='echo "#use Data::Dumper; printf \"%s\\\\n\", Data::Dumper->Dump( [ \$data ] , [ \"data\" ] );"'
+alias dumper='echo "#print JSON->new->pretty->encode( \$data ) . \"\\\\n\"";'
 alias gradle-check='gradle-check --invoke'
 alias update-git-graph='git show-ref -s | git commit-graph write --stdin-commits'
 alias git-upstream='git for-each-ref refs/heads/$(git symbolic-ref --short HEAD) --format="%(upstream:short)"'
