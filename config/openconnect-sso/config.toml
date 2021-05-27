@@ -1,0 +1,27 @@
+on_disconnect = ""
+
+[default_profile]
+address = "https://vpn-usal2-01.infor.com/"
+user_group = ""
+name = ""
+
+[credentials]
+username = "michael.rappazzo@infor.com"
+
+[auto_fill_rules]
+[[auto_fill_rules."https://*"]]
+selector = "div[id=passwordError]"
+action = "stop"
+
+[[auto_fill_rules."https://*"]]
+selector = "input[type=email]"
+fill = "username"
+
+[[auto_fill_rules."https://*"]]
+selector = "input[type=password]"
+fill = "password"
+
+[[auto_fill_rules."https://*"]]
+selector = "input[type=submit]"
+action = "click"
+

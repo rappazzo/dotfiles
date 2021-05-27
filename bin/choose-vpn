@@ -36,6 +36,7 @@ my $listen = 0;
 my $hosts;
 my $host;
 my $current_host;
+print "Profile File: /opt/cisco/anyconnect/profile/$config_file\n";
 open my $reader, "<", "/opt/cisco/anyconnect/profile/$config_file";
 while (<$reader>) {
    if (/<HostEntry>/) {

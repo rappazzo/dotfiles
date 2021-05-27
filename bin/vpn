@@ -54,10 +54,19 @@ fi
 
 check_existing_process
 
-( echo $(cred https://mrappazzo@code.gtnexus.info --stdout); oathtool -b --totp $(cred infor-mfa --stdout) ) | \
-   sudo openconnect \
-      --script=$HOME/.dots/private/vpnc-script.sh \
-      --user mrappazzo --passwd-on-stdin \
-      --pid-file="$HOME/.openconnect.pid" \
-      --background \
-      ${current_vpn_address}
+# infor-mfa
+secret=$(cred infor-mfa --stdout)
+mfa_key=$(oathtool -b --totp $secret)
+echo -n $mfa_key | pbcopy
+echo "MFA value ($mfa_key) copied to clipboard"
+
+openconnect-sso --server ${current_vpn_address} --user michael.rappazzo@infor.com -- --pid-file="$HOME/.openconnect.pid" --background
+#--script=$HOME/.dots/private/vpnc-script.sh
+
+#( echo $(cred https://mrappazzo@code.gtnexus.info --stdout); oathtool -b --totp $(cred infor-mfa --stdout) ) | \
+#   sudo openconnect \
+#      --script=$HOME/.dots/private/vpnc-script.sh \
+#      --user mrappazzo --passwd-on-stdin \
+#      --pid-file="$HOME/.openconnect.pid" \
+#      --background \
+#      ${current_vpn_address}

@@ -5,7 +5,7 @@ function only-my-branch {
    git log $1 --not $( git show-ref --heads | cut -d' ' -f2 | grep -v "^refs/heads/$1" )
 }
 
-function gk-hist {
+function gk-file {
    gitk --all $(git log --format=%h --follow $@) -- $@ &
 }
 function gk-reflog {
@@ -36,7 +36,7 @@ function findin {
 function infor-mfa {
    secret=$(cred infor-mfa --stdout)
    mfa_key=$(oathtool -b --totp $secret)
-   echo $mfa_key | pbcopy
+   echo -n $mfa_key | pbcopy
    echo "MFA value ($mfa_key) copied to clipboard"
 }
 
