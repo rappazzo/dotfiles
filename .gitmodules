@@ -1,0 +1,3 @@
+[submodule "vim/pack/local/start"]
+	path = vim/pack/local/start
+	url = https://github.com/editorconfig/editorconfig-vim.git
