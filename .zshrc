@@ -15,7 +15,7 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 set -o vi
 
 export TOOLS_BIN=$HOME/code/tools/bin
-export PATH="$TOOLS_BIN:$PATH:$HOME/.dots/bin"
+export PATH="/usr/local/sbin:$TOOLS_BIN:$PATH:$HOME/.dots/bin:$HOME/.local/bin:/opt/mqm/bin:/opt/mqm/samp/bin"
 source $TOOLS_BIN/.autocomplete/zsh/.install
 
 zstyle ':completion:::git:*' script /usr/local/etc/bash_completion.d/git-completion.bash
@@ -47,4 +47,4 @@ export RT_USE_LOCAL=yes
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-export PATH="/usr/local/sbin:$PATH"
+export DYLD_LIBRARY_PATH=/opt/mqm/lib64
