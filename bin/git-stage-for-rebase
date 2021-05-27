@@ -1,11 +1,27 @@
 #!/usr/bin/env perl
 
-my $range = '$(feature-base)..HEAD';
-if ($ARGV[1] eq "--base") {
-   shift @ARGV;
-   $range = shift @ARGV;
-   $range .= "..HEAD" unless $range =~ /\.\./;
+use Getopt::Long;
+Getopt::Long::Configure("pass_through");
+
+my $range;
+my $branch = '';
+GetOptions (
+   "base=s"   => \$range,
+   "range=s"  => \$range,
+   "branch=s" => \$branch
+);
+unless ($branch) {
+   chomp ($branch = `git symbolic-ref --short HEAD 2>/dev/null`);
 }
+my $rev = $branch ? $branch : 'HEAD';
+if ($range && $range !~ /\.\./) {
+   $range .= "..$rev";
+}
+unless ($range) {
+   chomp ($range = `feature-base $branch`);
+   $range .= '..$rev';
+}
+printf "Using range: %s\n", $range;
 
 # Doesn't support renames or adds yet -- prompt?
 
@@ -39,5 +55,6 @@ for my $commit (keys %$by_fixup_commit) {
 }
 
 printf "\nStaged %d commits:\n", scalar(keys %$by_fixup_commit);
-system "git", "log",  '@{upstream}..HEAD';
+chomp (my $from = $branch ? `git rev-parse $branch\@{upstream}` : '');
+system "git", "log",  "$from..$rev" if $from;
 # for file ($(git diff --name-only)); do git add $file; git fixup --no-verify --no-edit; done
