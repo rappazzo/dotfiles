@@ -60,8 +60,7 @@ mfa_key=$(oathtool -b --totp $secret)
 echo -n $mfa_key | pbcopy
 echo "MFA value ($mfa_key) copied to clipboard"
 
-openconnect-sso --server ${current_vpn_address} --user michael.rappazzo@infor.com -- --pid-file="$HOME/.openconnect.pid" --background
-#--script=$HOME/.dots/private/vpnc-script.sh
+openconnect-sso --server ${current_vpn_address} --user michael.rappazzo@infor.com -- --pid-file="$HOME/.openconnect.pid" --background --script=$HOME/.dots/private/vpnc-script.sh
 
 #( echo $(cred https://mrappazzo@code.gtnexus.info --stdout); oathtool -b --totp $(cred infor-mfa --stdout) ) | \
 #   sudo openconnect \
