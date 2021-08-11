@@ -12,20 +12,22 @@
     excludesfile = ~/.gitignore
 	editor = mvim -f --nomru -c \"au VimLeave * !open -a iTerm\"
     preloadindex = true
-	pager = 
+	pager =
 	whitespace = fix
    disambiguate = commit
+	commitGraph = true
 [diff] 
     tool = araxis
    indentHeuristic = true
 [difftool]
-    prompt=false   
+    prompt = false
     keepBackup = false
 [merge] 
     tool = araxis
+	renormalize = true
 [mergetool]
-    prompt=false
-    keepBackup=false
+    prompt = false
+    keepBackup = false
     automerge = false
 [pager]
     diff = false
@@ -42,9 +44,9 @@
 	compile-prompt = No
 	push-prompt = Yes
 [fetch-daily]
-	fetch-dirs = /code/gtnexus/devl
-	ff-refs = /code/gtnexus/devl
-	base-of = /code/gtnexus/devl
+	fetch-dirs = /Users/mike/code/gtnexus/devl
+	ff-refs = /Users/mike/code/gtnexus/devl
+	base-of = /Users/mike/code/gtnexus/devl
 [sendemail]
    smtpEncryption = tls
    smtpServer = smtp.gmail.com
@@ -66,6 +68,7 @@
 	compile-prompt = No
 [log]
 	mailmap = true
+	date = short
 [patch]
 	auto-launch = true
 [interactive]
@@ -83,9 +86,25 @@
 	required = true
 [lfte]
 	disconnect-all-when-ambiguous = true
-[eclipse]
-	path = /Users/mike/Applications/eclipse/instance/java-oxygen/Eclipse.app
+	default-instance = l
 [guitool "Revert to HEAD"]
 	cmd = git checkout HEAD -- \"$FILENAME\"
 [guitool "git fixup"]
 	cmd = git fixup
+[format]
+	pretty = %C(yellow)%h%C(reset) @ %C(blue)%ad%C(reset) [%C(green)%an%C(reset)%<|(44)%x5d %s
+[gc]
+	writeCommitGraph = true
+[patch-git]
+	gitk = true
+	araxis = true
+[eclipse]
+	path = /Users/mike/Applications/eclipse/instance/java-latest/Eclipse.app
+[hooks]
+	stop-on-bad-whitespace = true
+[feature-restage]
+	suppress-no-rebase-warning = true
+[ff-refs]
+	force-forward = true
+[init]
+	defaultBranch = master
