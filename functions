@@ -82,3 +82,27 @@ function reflog() {
                 {}
 FZF-EOF"
 }
+
+function junit_job_list() {
+   if [[ "$1" == "" ]]; then
+      echo "Missing job name (for example 'rct-tcard-trade-test-group')"
+   fi
+   job=$1
+   if echo "$job" | grep -v --quiet "test-group"; then
+      job="${job}-test-group"
+   fi
+   pattern=$2
+   if [[ "${pattern}" == "" ]]; then
+      pattern='xomet1ng that would nexer patch'
+   fi
+   echo "Looking at ${job}"
+   curl https://nexus-build-01.infor.com/job/junits/job/${job}/lastCompletedBuild/consoleText 2>/dev/null | \
+      head -n 5000 | \
+      grep "^\d\.\d" | \
+      cut -d' ' -f2 | \
+      perl -pe 's/\r\n|\n|\r/\n/g' | \
+      sed -e "s/\\\\/./g" -e "s/\*\*\*\*\*\*\*\*/tradecard/" | \
+      sort | \
+      sed -e '$!s/$/,/' | \
+      sed -e /${pattern}/q
+}
