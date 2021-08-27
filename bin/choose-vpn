@@ -13,14 +13,18 @@ if (! -d $private) {
    `mkdir "$private"`;
 }
 
-opendir my $dh, "/opt/cisco/anyconnect/profile" or die "Cannot open directory: $!";
-my @config_files = grep {/\.xml$/} readdir $dh;
-closedir $dh;
+my @config_files;
+if (opendir my $dh, "/opt/cisco/anyconnect/profile") {
+   @config_files = map {"/opt/cisco/anyconnect/profile/$_"} grep {/\.xml$/} readdir $dh;
+   closedir $dh;
+} elsif (-e "$private/remoteaccess.xml") {
+   push @config_files, "$private/remoteaccess.xml";
+}
 if ( ! @config_files ) {
    printf STDERR "Unable to find VPN config file\n";
    exit 1;
 }
-my ($config_file) = sort {(stat("/opt/cisco/anyconnect/profile/$b"))[9] <=> (stat("/opt/cisco/anyconnect/profile/$a"))[9]} @config_files;
+my ($config_file) = sort {(stat($b))[9] <=> (stat($a))[9]} @config_files;
 
 my @hosts;
 my @addresses;
@@ -36,8 +40,8 @@ my $listen = 0;
 my $hosts;
 my $host;
 my $current_host;
-print "Profile File: /opt/cisco/anyconnect/profile/$config_file\n";
-open my $reader, "<", "/opt/cisco/anyconnect/profile/$config_file";
+print "Profile File: $config_file\n";
+open my $reader, "<", $config_file;
 while (<$reader>) {
    if (/<HostEntry>/) {
       $listen = 1;
