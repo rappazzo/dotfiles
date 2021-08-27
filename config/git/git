@@ -108,3 +108,5 @@
 	force-forward = true
 [init]
 	defaultBranch = master
+[pull]
+	twohead = ort
