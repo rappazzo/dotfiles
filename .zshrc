@@ -42,7 +42,13 @@ bindkey '^[[B' history-substring-search-down
 # Report CPU usage for commands running longer than 20 seconds
 #REPORTTIME=20
 
-#eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+#eval "$(perl -I$HOME/Library/perl5/lib/perl5 -Mlocal::lib)"
+export PERL5LIB="/Users/mike/Library/perl5/lib/perl5"
+export PERL_HOMEDIR="1"
+export PERL_LOCAL_LIB_ROOT="/Users/mike/Library/perl5"
+export PERL_MB_OPT="--install_base /Users/mike/Library/perl5"
+export PERL_MM_OPT="INSTALL_BASE=/Users/mike/Library/perl5"
+
 export RT_USE_LOCAL=yes
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
