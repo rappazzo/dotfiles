@@ -28,9 +28,9 @@ map <Leader>xml :set filetype=xml<CR>:syntax enable<CR>:%!tidy -mi -xml -q -utf8
 " See https://github.com/macvim-dev/macvim/blob/master/runtime/doc/gui_mac.txt
 anoremenu 1.1 TouchBar.-space- <Nop>
 tlnoremenu 1.1 TouchBar.-space- <Nop>
-an TouchBar.JSON :set filetype=json<CR>:syntax enable<CR>:%!python -m json.tool<CR>
-an TouchBar.XML :set filetype=xml<CR>:syntax enable<CR>:%!tidy -mi -xml -q -utf8 -w 1000<CR>1G=G
-an TouchBar.SQL :set filetype=SQL<CR>:syntax enable<CR>:SQLUFormatter<CR>
+an TouchBar.format.JSON :set filetype=json<CR>:syntax enable<CR>:%!python -m json.tool<CR>
+an TouchBar.format.XML :set filetype=xml<CR>:syntax enable<CR>:%!tidy -mi -xml -q -utf8 -w 1000<CR>1G=G
+an TouchBar.format.SQL :set filetype=SQL<CR>:syntax enable<CR>:SQLUFormatter<CR>
 
 
 " Disable folding in the markdown plugin
