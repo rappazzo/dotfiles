@@ -43,6 +43,7 @@
 	gradle-prompt = Yes
 	compile-prompt = No
 	push-prompt = Yes
+	post-push-promote-verify = No
 [fetch-daily]
 	fetch-dirs = /Users/mike/code/gtnexus/devl
 	ff-refs = /Users/mike/code/gtnexus/devl
@@ -110,3 +111,5 @@
 	defaultBranch = master
 [pull]
 	twohead = ort
+[maintenance]
+	repo = /Users/mike/code/gtnexus/development
