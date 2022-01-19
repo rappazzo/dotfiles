@@ -32,6 +32,7 @@ an TouchBar.format.JSON :set filetype=json<CR>:syntax enable<CR>:%!python -m jso
 an TouchBar.format.XML :set filetype=xml<CR>:syntax enable<CR>:%!tidy -mi -xml -q -utf8 -w 1000<CR>1G=G
 an TouchBar.format.SQL :set filetype=SQL<CR>:syntax enable<CR>:SQLUFormatter<CR>
 
+an icon=NSTouchBarAddTabTemplate TouchBar.NewTab :tabnew<CR>
 
 " Disable folding in the markdown plugin
 let g:vim_markdown_folding_disabled=1
