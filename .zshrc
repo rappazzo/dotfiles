@@ -15,7 +15,7 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 set -o vi
 
 export TOOLS_BIN=$HOME/code/tools/bin
-export PATH="/usr/local/sbin:$TOOLS_BIN:$PATH:$HOME/.dots/bin:$HOME/.local/bin:/opt/mqm/bin:/opt/mqm/samp/bin"
+export PATH="/usr/local/bin:$TOOLS_BIN:$PATH:$HOME/.dots/bin:/usr/local/sbin:$HOME/.local/bin:$HOME/.poetry/bin:$HOME/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 source $TOOLS_BIN/.autocomplete/zsh/.install
 
 zstyle ':completion:::git:*' script /usr/local/etc/bash_completion.d/git-completion.bash
@@ -54,3 +54,6 @@ export RT_USE_LOCAL=yes
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 export DYLD_LIBRARY_PATH=/opt/mqm/lib64
+
+
+export PATH="$HOME/.poetry/bin:$PATH"
