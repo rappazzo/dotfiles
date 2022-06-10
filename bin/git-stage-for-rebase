@@ -19,7 +19,7 @@ if ($range && $range !~ /\.\./) {
 }
 unless ($range) {
    chomp ($range = `feature-base $branch`);
-   $range .= '..$rev';
+   $range .= "..$rev";
 }
 printf "Using range: %s\n", $range;
 
