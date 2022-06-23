@@ -1,12 +1,12 @@
 on_disconnect = ""
 
 [default_profile]
-address = ""
+address = "https://vpn-ussp1-02.infor.com/"
 user_group = ""
 name = ""
 
 [credentials]
-username = ""
+username = "michael.rappazzo@infor.com"
 
 [auto_fill_rules]
 [[auto_fill_rules."https://*"]]
