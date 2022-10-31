@@ -9,7 +9,7 @@ function gk-file {
    gitk --all $(git log --format=%h --follow $@) -- $@ &
 }
 function gk-reflog {
-   gitk --all $(git reflog | cut -d'@' -f1) -- $@ &
+   gitk --all --since="9 months ago" $(git reflog | cut -d'@' -f1) -- $@ &
 }
 function named {
    to_find=$1
