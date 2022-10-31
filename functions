@@ -13,10 +13,14 @@ function gk-reflog {
 }
 function named {
    to_find=$1
-   if echo $to_find | grep -v --quiet '\.'; then
+   if [[ ! $to_find =~ .*"\.".* ]]; then
       to_find="$1.java"
    fi
-   find . -type f -name $to_find -print -quit | cut -c3-
+   if git rev-parse --git-dir >/dev/null 2>&1; then
+      git ls-files | grep -i $to_find | HEAD -n 1
+   else
+      find . -type f -name $to_find -print -quit | cut -c3-
+   fi
 }
 function blame {
    git gui blame 2>/dev/null -- $(named $1) &
