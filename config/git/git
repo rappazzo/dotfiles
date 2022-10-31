@@ -113,3 +113,5 @@
 	twohead = ort
 [maintenance]
 	repo = /Users/mike/code/gtnexus/development
+[feature-promote]
+	show-timings = true
