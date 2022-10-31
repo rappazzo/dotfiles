@@ -15,12 +15,13 @@ set background=light
 colorscheme solarized
 set number
 set showtabline=2          " always show the tab bar
+set tabpagemax=25          " the max number of tabs.  Exceeding this will split-open
 
 filetype plugin on         " auto-detect file type for syntax highlighting
 filetype indent on         " auto-indent files when the syntax is known
 
 " Auto syntax formatting
-map <Leader>json :set filetype=json<CR>:syntax enable<CR>:%!python -m json.tool<CR>
+map <Leader>json :set filetype=json<CR>:syntax enable<CR>:%!python3 -m json.tool<CR>
 map <Leader>sql :set filetype=SQL<CR>:syntax enable<CR>:SQLUFormatter<CR>
 map <Leader>xml :set filetype=xml<CR>:syntax enable<CR>:%!tidy -mi -xml -q -utf8 -w 1000<CR>1G=G
 
@@ -28,7 +29,7 @@ map <Leader>xml :set filetype=xml<CR>:syntax enable<CR>:%!tidy -mi -xml -q -utf8
 " See https://github.com/macvim-dev/macvim/blob/master/runtime/doc/gui_mac.txt
 anoremenu 1.1 TouchBar.-space- <Nop>
 tlnoremenu 1.1 TouchBar.-space- <Nop>
-an TouchBar.format.JSON :set filetype=json<CR>:syntax enable<CR>:%!python -m json.tool<CR>
+an TouchBar.format.JSON :set filetype=json<CR>:syntax enable<CR>:%!python3 -m json.tool<CR>
 an TouchBar.format.XML :set filetype=xml<CR>:syntax enable<CR>:%!tidy -mi -xml -q -utf8 -w 1000<CR>1G=G
 an TouchBar.format.SQL :set filetype=SQL<CR>:syntax enable<CR>:SQLUFormatter<CR>
 
