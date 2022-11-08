@@ -15,6 +15,16 @@ rm ~/.zshrc
 rm ~/.gitconfig
 rm -rf ~/.config
 
+rm ~/.profile
+rm ~/.vimrc
+rm ~/.vim
+rm ~/.bashrc
+rm ~/.bash_login
+rm ~/.bash_profile
+rm ~/.zshrc
+rm ~/.gitconfig
+rm -rf ~/.config
+
 ln -s ${here}/.profile ~/.profile
 ln -s ${here}/.vimrc ~/.vimrc
 ln -s ${here}/vim ~/.vim
