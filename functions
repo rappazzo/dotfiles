@@ -125,3 +125,19 @@ function blame-count {
    git blame $file --line-porcelain | grep "^author " | sort | uniq -c | awk '{printf "%-4s %s %s %s\n", $1, $3, $4, $5}' | sort -nr
 }
 
+function branch-issues {
+   branch=$1
+   if [[ "$branch" == "" ]]; then
+      branch=$(git symbolic-ref --short HEAD)
+   fi
+   if [[ "$branch" == "" ]]; then
+      echo >&2 "No branch"
+      return 1
+   fi
+   base=$(feature-base $branch)
+   if [[ "$base" == "" ]]; then
+      base=$(git log -n 1 --merges --format=%h)
+   fi
+   git log --format='%s %b' $base..$branch | sed 's/[^0-9a-zA-Z-]/ /g' | tr ' ' '\n' | egrep "^(PSO|GTN|GTBUG)-[0-9]+\$" | sort -u
+}
+
