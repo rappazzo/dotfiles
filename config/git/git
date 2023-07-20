@@ -22,6 +22,8 @@
 [difftool]
     prompt = false
     keepBackup = false
+[difftool "araxis"]
+    path = /Applications/Araxis Merge.app/Contents/Utilities/compare
 [merge] 
     tool = araxis
 	renormalize = true
@@ -29,6 +31,8 @@
     prompt = false
     keepBackup = false
     automerge = false
+[mergetool "araxis"]
+    path = /Applications/Araxis Merge.app/Contents/Utilities/compare
 [pager]
     diff = false
 [push]
@@ -99,8 +103,6 @@
 [patch-git]
 	gitk = true
 	araxis = true
-[eclipse]
-	path = /Users/mike/Applications/eclipse/instance/java-latest/Eclipse.app
 [hooks]
 	stop-on-bad-whitespace = true
 [feature-restage]
@@ -115,3 +117,5 @@
 	repo = /Users/mike/code/gtnexus/development
 [feature-promote]
 	show-timings = true
+[eclipse]
+	path = /Users/mike/Applications/eclipse/instance/java-latest/Eclipse.app
