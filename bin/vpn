@@ -54,6 +54,7 @@ fi
 
 check_existing_process
 
+export OPENSSL_CONF="$private/openssl.cnf"
 # infor-mfa
 secret=$(cred infor-mfa --stdout)
 mfa_key=$(oathtool -b --totp $secret)
