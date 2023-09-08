@@ -1,11 +1,17 @@
-.vim/temp
 .vim/.netrwhist
-private-env
-vim/temp
-vim/.netrwhist
-pihole/etc
-pihole/dnsmasq.d
+.vim/temp
+config/configstore/update-notifier-@tuyapi
 config/configstore/update-notifier-npm.json
-private
-config/karabiner/automatic_backups/
+config/gitui
 config/infor
+config/iterm2-profiles.json
+config/iterm2/AppSupport
+config/jgit
+config/karabiner/automatic_backups
+private
+vim/.netrwhist
+vim/temp
+
+# this is just a symlink
+bin/unjam
+
