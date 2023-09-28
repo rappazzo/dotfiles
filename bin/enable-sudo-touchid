@@ -1,0 +1,58 @@
+#!/usr/bin/env perl
+
+use strict;
+use Getopt::Long;
+Getopt::Long::Configure("pass_through");
+
+#cheap arg parse
+my $dry_run = 0;
+my $interactive = 1;
+my $verbose = 0;
+GetOptions (
+   "n|dry-run"           => \$dry_run,
+   "i|interactive"       => \$interactive,
+   "v|verbose"           => \$verbose,
+);
+
+die "Must run as root\n" if $> != 0;
+
+if ($interactive) {
+   printf "WARNING: your network will be disabled for a moment.\n";
+   printf "Do you wish to continue? [Yes] ";
+   chomp(my $choice = <STDIN>);
+   if ($choice =~ /No?/i) {
+      exit 0;
+   }
+}
+#disable network (Big Brother is watching)
+if (system "networksetup -setnetworkserviceenabled Wi-Fi off") {
+   print STDERR "ERROR: unable to disable network\n";
+   exit 1;
+}
+END {
+   #re-enable network at the end
+   if (system "networksetup -setnetworkserviceenabled Wi-Fi on") {
+      print STDERR "ERROR: unable to re-enable network\n";
+      exit 1;
+   }
+}
+
+open my $pam_sudo_h, "<", "/etc/pam.d/sudo" or die "Unable to open /etc/pam.d/sudo: $!";
+my @pam_sudo = <$pam_sudo_h>;
+close $pam_sudo_h;
+
+my $has_touch_id = grep {/pam_tid.so/} @pam_sudo;
+unless ($has_touch_id) {
+   splice @pam_sudo, 1, 0, "auth       sufficient     pam_tid.so\n";
+}
+
+if ($dry_run || $verbose) {
+   printf "Touch ID is already setup\n" if $has_touch_id;
+   printf "Touch ID is not setup\n" unless $has_touch_id;
+}
+unless ($dry_run) {
+   open $pam_sudo_h, ">", "/etc/pam.d/sudo" or die "Unable to open /etc/pam.d/sudo: $!";
+   for my $line (@pam_sudo) {
+      print $pam_sudo_h $line;
+   }
+}
