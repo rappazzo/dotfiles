@@ -15,3 +15,4 @@ vim/temp
 # this is just a symlink
 bin/unjam
 
+config/Redgate/feature_usage_data
