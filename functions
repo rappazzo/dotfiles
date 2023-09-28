@@ -142,7 +142,11 @@ function branch-issues {
 }
 
 function last-week {
-   git log --all --pretty='%ad %H' --date=short --since="1 week ago" --author="Michael Rappazzo" |\
+   user=$1
+   if [[ $user == "" ]]; then
+      user="Michael Rappazzo"
+   fi
+   git log --all --pretty='%ad %H' --date=short --since="1 week ago" --author="${user}" |\
       awk -v start_day="$(date -v-8d +%Y-%m-%d)" '$1 >= start_day {print $2}' |\
       git log --no-walk --stdin --color=always |\
       awk -F] '!seen[$2]++'
