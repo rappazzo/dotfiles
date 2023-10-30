@@ -151,4 +151,8 @@ function last-week {
       git log --no-walk --stdin --color=always |\
       awk -F] '!seen[$2]++'
 }
+function bb-commit {
+   rev=$1
+   open "https://code.gtnexus.info/projects/COREDEV/repos/feature-code/commits/$rev"
+}
 
