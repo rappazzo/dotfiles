@@ -12,7 +12,7 @@ ZSH_THEME_GIT_PROMPT_BEHIND=" %{$fg[yellow]%}⬇"
 # Get the status of the working tree
 function git_prompt_status() {
   local INDEX STATUS
-  INDEX=$(command git status --porcelain -b 2> /dev/null)
+  INDEX=$(command git --no-optional-locks status --porcelain -b 2> /dev/null)
   STATUS=""
   if $(echo "$INDEX" | command grep -E '^\?\? ' &> /dev/null); then
     STATUS="$ZSH_THEME_GIT_PROMPT_UNTRACKED$STATUS"
@@ -39,7 +39,7 @@ function git_prompt_status() {
   elif $(echo "$INDEX" | grep '^AD ' &> /dev/null); then
     STATUS="$ZSH_THEME_GIT_PROMPT_DELETED$STATUS"
   fi
-  if $(command git rev-parse --verify refs/stash >/dev/null 2>&1); then
+  if $(command git --no-optional-locks rev-parse --verify refs/stash >/dev/null 2>&1); then
     STATUS="$ZSH_THEME_GIT_PROMPT_STASHED$STATUS"
   fi
   if $(echo "$INDEX" | grep '^UU ' &> /dev/null); then
