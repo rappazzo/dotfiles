@@ -23,7 +23,7 @@ function git_prompt_info() {
 PROMPT='%{$fg[cyan]%}$(_fishy_collapsed_wd)%{$reset_color%}$(git_prompt_info) %B%F{green}❯%F{yellow}❯%F{blue}❯%f%b '
 RPROMPT='%{$fg[red]%}%(?..⏎)%{$reset_color%}'
 
-function zle-keymap-select {
+function zle-line-init zle-keymap-select {
    MODE_INDICATOR="%{$fg_bold[red]%}<%{$fg[red]%}<<%{$reset_color%}"
    case $KEYMAP in
       vicmd) MODE_CHAR="❮";;
@@ -73,5 +73,6 @@ function setup_prompts {
 
 [[ -z $precmd_functions ]] && precmd_functions=()
 precmd_functions=($precmd_functions setup_prompts)
+zle -N zle-line-init
 zle -N zle-keymap-select
 
