@@ -115,7 +115,16 @@
 	twohead = ort
 [maintenance]
 	repo = /Users/mike/code/gtnexus/development
+	repo = /Users/mike/code/gtnexus/devl-rct
+	repo = /Users/mike/code/gtnexus/devl-prod
+	repo = /Users/mike/code/gtnexus/devl
 [feature-promote]
 	show-timings = true
 [eclipse]
 	path = /Users/mike/Applications/eclipse/instance/java-latest/Eclipse.app
+[advice]
+	detachedHead = false
+	fetchshowforcedupdates = false
+	addEmptyPathspec = false
+[gitk]
+	hideprefetchrefs = true
