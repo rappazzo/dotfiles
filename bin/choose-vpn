@@ -67,11 +67,11 @@ while (<$reader>) {
    }
 }
 
-printf "Current VPN:  %s\n", $current_host ? $current_host->{name} : '<None>';
+printf "Current VPN:  %s\n", $current_host ? $current_host->{name} =~ s/\d - //r : '<None>';
 my $index = 1;
 for my $host_name (sort keys %$hosts) {
    $hosts->{$host_name}->{index} = $index;
-   printf "  %-22s => %s\n", $host_name, $hosts->{$host_name}->{address};
+   printf "  %d - %-22s => %s\n", $index, $host_name =~ s/\d - //r, $hosts->{$host_name}->{address};
    $index++;
 }
 
@@ -87,11 +87,11 @@ if ($choice) {
    }
 }
 if ($selected) {
-   printf "Selected: %s (%s)\n", $selected->{name}, $selected->{address};
+   printf "Selected: %s (%s)\n", $selected->{name} =~ s/\d - //r, $selected->{address};
    printf "   >> writing to %s\n", "$private/vpn-address";
    open my $writer, ">", "$private/vpn-address";
    print $writer $selected->{address};
    close $writer;
 } else {
-   printf "VPN not changed.  Using '%s'\n", $current_host ? $current_host->{name} : '<None>';
+   printf "VPN not changed.  Using '%s'\n", $current_host ? $current_host->{name} =~ s/\d - //r : '<None>';
 }
