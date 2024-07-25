@@ -5,20 +5,18 @@ NC='\033[0m'
 
 function check_existing_process {
    local force=$1
-   if [[ -e "$HOME/.openconnect.pid" ]]; then
-      local pid=$(<"$HOME/.openconnect.pid")
-      if ps aux | grep openconnect | grep $pid --quiet; then
-         local choice="Yes"
-         if [[ $force -ne 1 ]]; then
-            printf "There is currently a VPN process running.  Would you like to stop it [Yes]? "
-            read choice
-         fi
-         if echo "$choice" | egrep -v "[Nn]o?" --quiet; then
-            sudo killall -SIGINT openconnect
-            #sudo kill $pid 2>/dev/null
-         else
-            exit 0
-         fi
+   local pid=$(pgrep openconnect)
+   if [[ $pid != "" ]]; then
+      local choice="Yes"
+      if [[ $force -ne 1 ]]; then
+         printf "There is currently a VPN process running.  Would you like to stop it [Yes]? "
+         read choice
+      fi
+      if echo "$choice" | egrep -v "[Nn]o?" --quiet; then
+         sudo killall -SIGINT openconnect
+         #sudo kill $pid 2>/dev/null
+      else
+         exit 0
       fi
    fi
 }
@@ -55,18 +53,14 @@ fi
 check_existing_process
 
 export OPENSSL_CONF="$private/openssl.cnf"
-# infor-mfa
-# secret=$(cred infor-mfa --stdout)
-# mfa_key=$(oathtool -b --totp $secret)
-# echo -n $mfa_key | pbcopy
-# echo "MFA value ($mfa_key) copied to clipboard"
 
-openconnect-sso --server ${current_vpn_address} --user michael.rappazzo@infor.com -- --pid-file="$HOME/.openconnect.pid" --background --script=$HOME/.dots/private/vpnc-script.sh
+openconnect-sso \
+   --server ${current_vpn_address} \
+   --user michael.rappazzo@infor.com \
+   -- \
+   --pid-file="$HOME/.cache/.openconnect.pid" \
+   --background --script=$HOME/.dots/private/vpnc-script.sh
 
-#( echo $(cred https://mrappazzo@code.gtnexus.info --stdout); oathtool -b --totp $(cred infor-mfa --stdout) ) | \
-#   sudo openconnect \
-#      --script=$HOME/.dots/private/vpnc-script.sh \
-#      --user mrappazzo --passwd-on-stdin \
-#      --pid-file="$HOME/.openconnect.pid" \
-#      --background \
-#      ${current_vpn_address}
+# let the output of the open connect output
+sleep 3
+echo
