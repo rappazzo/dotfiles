@@ -10,12 +10,13 @@ source ~/.dots/zsh/completion.zsh
 source ~/.dots/aliases
 source ~/.dots/functions
 
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+eval $(/opt/homebrew/bin/brew shellenv)
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 set -o vi
 
 export TOOLS_BIN=$HOME/code/tools/bin
-export PATH="/usr/local/bin:$TOOLS_BIN:$PATH:$HOME/.dots/bin:/usr/local/sbin:$HOME/.local/bin:$HOME/.poetry/bin:$HOME/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+export PATH="$TOOLS_BIN:$PATH:$HOME/.dots/bin:$HOME/.local/bin:$HOME/.poetry/bin:$HOME/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 source $TOOLS_BIN/.autocomplete/zsh/.install
 
 zstyle ':completion:::git:*' script /usr/local/etc/bash_completion.d/git-completion.bash
@@ -35,7 +36,7 @@ HISTSIZE=10000
 SAVEHIST=9000
 HISTFILE=~/.zsh_history
 
-source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
@@ -52,8 +53,3 @@ export PERL_MM_OPT="INSTALL_BASE=/Users/mike/Library/perl5"
 export RT_USE_LOCAL=yes
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-export DYLD_LIBRARY_PATH=/opt/mqm/lib64
-
-
-export PATH="$HOME/.poetry/bin:$PATH"
