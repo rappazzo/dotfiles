@@ -1,7 +1,7 @@
 [user]
     name = Michael Rappazzo
-	email = michael.rappazzo@infor.com
-	domain-login = mrappazzo
+    email = michael.rappazzo@infor.com
+    domain-login = mrappazzo
 [color]
     diff = auto
     status = auto
@@ -10,12 +10,17 @@
     changed = yellow
 [core]
     excludesfile = ~/.gitignore
-	editor = mvim -f --nomru -c \"au VimLeave * !open -a iTerm\"
+    editor = mvim -f --nomru -c \"au VimLeave * !open -a iTerm\"
     preloadindex = true
-	pager =
-	whitespace = fix
+    pager =
+    whitespace = fix
    disambiguate = commit
-	commitGraph = true
+    commitGraph = true
+[scalar]
+    repo = /Users/mike/code/gtnexus/devl
+    repo = /Users/mike/code/gtnexus/pso
+[credential "https://code.gtnexus.info"]
+    username = mrappazzo
 [diff] 
     tool = araxis
    indentHeuristic = true
@@ -26,7 +31,7 @@
     path = /Applications/Araxis Merge.app/Contents/Utilities/compare
 [merge] 
     tool = araxis
-	renormalize = true
+    renormalize = true
 [mergetool]
     prompt = false
     keepBackup = false
@@ -36,95 +41,96 @@
 [pager]
     diff = false
 [push]
-	default = upstream
+    default = upstream
 [branch]
     autosetuprebase = always
 [credential]
-	helper = osxkeychain
+    helper = osxkeychain
 [alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
 [feature-rebase]
-	gradle-prompt = Yes
-	compile-prompt = No
-	push-prompt = Yes
-	post-push-promote-verify = No
+    gradle-prompt = Yes
+    compile-prompt = No
+    push-prompt = Yes
+    post-push-promote-verify = No
 [fetch-daily]
-	fetch-dirs = /Users/mike/code/gtnexus/devl
-	ff-refs = /Users/mike/code/gtnexus/devl
-	base-of = /Users/mike/code/gtnexus/devl
+    fetch-dirs = /Users/mike/code/gtnexus/devl
+    ff-refs = /Users/mike/code/gtnexus/devl
+    base-of = /Users/mike/code/gtnexus/devl
 [sendemail]
    smtpEncryption = tls
    smtpServer = smtp.gmail.com
    smtpUser = rappazzo@gmail.com
    smtpServerPort = 587
 [rebase]
-	instructionFormat = [%an%<|(64)%x5d %s
-	autoSquash = true
+    instructionFormat = [%an%<|(64)%x5d %s
+    autoSquash = true
 [pack]
-	window = 250
-	depth = 50
+    window = 250
+    depth = 50
 [transfer]
-	fsckobjects = true
+    fsckobjects = true
 [fetch]
-	fsckobjects = true
+    fsckobjects = true
 [receive]
-	fsckObjects = true
+    fsckObjects = true
 [bug-branch-promote]
-	compile-prompt = No
+    compile-prompt = No
 [log]
-	mailmap = true
-	date = short
+    mailmap = true
+    date = short
 [patch]
-	auto-launch = true
+    auto-launch = true
 [interactive]
-	diffFilter = diff-highlight
-	default-instance = linux
+    diffFilter = diff-highlight
+    default-instance = linux
 [codeflow]
-	compile-prompt = No
-	offer-amend = true
+    compile-prompt = No
+    offer-amend = true
 [status]
-	short = true
+    short = true
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 [lfte]
-	disconnect-all-when-ambiguous = true
-	default-instance = l
+    disconnect-all-when-ambiguous = true
+    default-instance = l
 [guitool "Revert to HEAD"]
-	cmd = git checkout HEAD -- \"$FILENAME\"
+    cmd = git checkout HEAD -- \"$FILENAME\"
 [guitool "git fixup"]
-	cmd = git fixup
+    cmd = git fixup
 [format]
-	pretty = %C(yellow)%h%C(reset) @ %C(blue)%ad%C(reset) [%C(green)%an%C(reset)%<|(44)%x5d %s
+    pretty = %C(yellow)%h%C(reset) @ %C(blue)%ad%C(reset) [%C(green)%an%C(reset)%<|(44)%x5d %s
 [gc]
-	writeCommitGraph = true
+    writeCommitGraph = true
 [patch-git]
-	gitk = true
-	araxis = true
+    gitk = true
+    araxis = true
 [hooks]
-	stop-on-bad-whitespace = true
+    stop-on-bad-whitespace = true
 [feature-restage]
-	suppress-no-rebase-warning = true
+    suppress-no-rebase-warning = true
 [ff-refs]
-	force-forward = true
+    force-forward = true
 [init]
-	defaultBranch = master
+    defaultBranch = master
 [pull]
-	twohead = ort
+    twohead = ort
 [maintenance]
-	repo = /Users/mike/code/gtnexus/development
-	repo = /Users/mike/code/gtnexus/devl-rct
-	repo = /Users/mike/code/gtnexus/devl-prod
-	repo = /Users/mike/code/gtnexus/devl
+    repo = /Users/mike/code/gtnexus/development
+    repo = /Users/mike/code/gtnexus/devl-rct
+    repo = /Users/mike/code/gtnexus/devl-prod
+    repo = /Users/mike/code/gtnexus/devl
+    repo = /Users/mike/code/gtnexus/pso
 [feature-promote]
-	show-timings = true
+    show-timings = true
 [eclipse]
-	path = /Users/mike/Applications/eclipse/instance/java-latest/Eclipse.app
+    path = /Users/mike/Applications/eclipse/java-2024-06/Eclipse.app
 [advice]
-	detachedHead = false
-	fetchshowforcedupdates = false
-	addEmptyPathspec = false
+    detachedHead = false
+    fetchshowforcedupdates = false
+    addEmptyPathspec = false
 [gitk]
-	hideprefetchrefs = true
+    hideprefetchrefs = true
