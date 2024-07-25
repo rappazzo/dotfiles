@@ -34,3 +34,4 @@ ln -s ${here}/.profile ~/.bash_profile
 ln -s ${here}/.zshrc ~/.zshrc
 ln -s ${here}/config/git/git ~/.gitconfig
 ln -s ${here}/config ~/.config
+ln -s ${here}/config/gtnexus-dev ~/.gtnexus-dev
