@@ -15,7 +15,11 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 set -o vi
 
-export TOOLS_BIN=$HOME/code/tools/bin
+if [[ -d $HOME/code/gtnexus/tools/bin ]]; then
+   export TOOLS_BIN=$HOME/gtnexus/code/tools/bin
+else
+   export TOOLS_BIN=$HOME/code/tools/bin
+fi
 export PATH="$TOOLS_BIN:$PATH:$HOME/.dots/bin:$HOME/.local/bin:$HOME/.poetry/bin:$HOME/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 source $TOOLS_BIN/.autocomplete/zsh/.install
 
