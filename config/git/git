@@ -48,6 +48,7 @@
     helper = osxkeychain
 [alias]
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+    unstage = "!git reset -- \"$1\" \"$2\" \"$3\" \"$4\" \"$5\" \"$6\" \"$7\" \"$8\" \"$9\""
 [feature-rebase]
     gradle-prompt = Yes
     compile-prompt = No
@@ -127,10 +128,12 @@
 [feature-promote]
     show-timings = true
 [eclipse]
-    path = /Users/mike/Applications/eclipse/java-2024-06/Eclipse.app
+	path = /Users/mike/Applications/eclipse/latest/Eclipse.app
 [advice]
     detachedHead = false
     fetchshowforcedupdates = false
     addEmptyPathspec = false
 [gitk]
     hideprefetchrefs = true
+[feature-connect]
+	prompt-default = false
