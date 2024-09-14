@@ -9,7 +9,7 @@
 [color.status]
     changed = yellow
 [core]
-    excludesfile = ~/.gitignore
+	excludesfile = /Users/mike/.config/git/global-gitignore
     editor = mvim -f --nomru -c \"au VimLeave * !open -a iTerm\"
     preloadindex = true
     pager =
