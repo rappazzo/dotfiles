@@ -20,7 +20,7 @@ if [[ -d $HOME/code/gtnexus/tools/bin ]]; then
 else
    export TOOLS_BIN=$HOME/code/tools/bin
 fi
-export PATH="$TOOLS_BIN:$PATH:$HOME/.dots/bin:$HOME/.local/bin:$HOME/.poetry/bin:$HOME/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+export PATH="$TOOLS_BIN:$PATH:$HOME/.dots/bin:$HOME/.local/bin:$HOME/.poetry/bin:$HOME/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$HOME/.cargo/bin"
 source $TOOLS_BIN/.autocomplete/zsh/.install
 
 zstyle ':completion:::git:*' script /usr/local/etc/bash_completion.d/git-completion.bash
@@ -32,8 +32,7 @@ test -f ~/.dots/private-env && source ~/.dots/private-env
 export EDITOR=/usr/local/bin/mvim
 export MY_USER=mrappazzo
 
-#export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-#export STUDIO_JDK=/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk
+#export JAVA_HOME=$(/usr/libexec/java_home)
 
 # HISTORY
 HISTSIZE=10000
