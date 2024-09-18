@@ -155,4 +155,17 @@ function bb-commit {
    rev=$1
    open "https://code.gtnexus.info/projects/COREDEV/repos/feature-code/commits/$rev"
 }
+function find-merge {
+   commit=$1
+   branch=${2:-HEAD}
+   git rev-list $commit..$branch --ancestry-path --merges --reverse | head -1
+}
+function find-commit-in-feature {
+   commit=$1
+   branch=${2:-HEAD}
+   merge=$(git rev-list $commit..$branch --ancestry-path --merges --reverse | head -1)
 
+   git log --format='%C(yellow)%h%C(reset) [%C(green)%an%C(reset)%<|(44)%x5d %<(95,trunc)%s' $merge^..$commit^
+   git log --format='%C(bold yellow)%h%C(reset) [%C(bold green)%an%C(reset)%<|(44)%x5d %<(95,trunc)%s' -n 1 $commit
+   git log --format='%C(yellow)%h%C(reset) [%C(green)%an%C(reset)%<|(44)%x5d %<(95,trunc)%s' $commit..$merge
+}
