@@ -138,3 +138,5 @@
     hideprefetchrefs = true
 [feature-connect]
 	prompt-default = false
+[feature]
+	ide = idea
