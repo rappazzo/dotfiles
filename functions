@@ -169,3 +169,12 @@ function find-commit-in-feature {
    git log --format='%C(bold yellow)%h%C(reset) [%C(bold green)%an%C(reset)%<|(44)%x5d %<(95,trunc)%s' -n 1 $commit
    git log --format='%C(yellow)%h%C(reset) [%C(green)%an%C(reset)%<|(44)%x5d %<(95,trunc)%s' $commit..$merge
 }
+function shadow {
+   org=$1
+   if [[ ${org} == "" ]]; then
+      org=5717988960038861
+   fi
+   token=$(echo "mikeAdmin:tradecard:shadow@${org}" | base64)
+   echo "Token: '${token}' copied to clipboard"
+   echo -n $token | pbcopy
+}
