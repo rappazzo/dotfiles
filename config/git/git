@@ -9,7 +9,7 @@
 [color.status]
     changed = yellow
 [core]
-	excludesfile = /Users/mike/.config/git/global-gitignore
+	excludesfile = /Users/michael.rappazzo/.config/git/global-gitignore
     editor = mvim -f --nomru -c \"au VimLeave * !open -a iTerm\"
     preloadindex = true
     pager =
@@ -17,8 +17,8 @@
    disambiguate = commit
     commitGraph = true
 [scalar]
-    repo = /Users/mike/code/gtnexus/devl
-    repo = /Users/mike/code/gtnexus/pso
+    repo = /Users/michael.rappazzo/code/gtnexus/devl
+    repo = /Users/michael.rappazzo/code/gtnexus/pso
 [credential "https://code.gtnexus.info"]
     username = mrappazzo
 [diff] 
@@ -56,9 +56,9 @@
     push-prompt = Yes
     post-push-promote-verify = No
 [fetch-daily]
-    fetch-dirs = /Users/mike/code/gtnexus/devl
-    ff-refs = /Users/mike/code/gtnexus/devl
-    base-of = /Users/mike/code/gtnexus/devl
+    fetch-dirs = /Users/michael.rappazzo/code/gtnexus/devl
+    ff-refs = /Users/michael.rappazzo/code/gtnexus/devl
+    base-of = /Users/michael.rappazzo/code/gtnexus/devl
 [sendemail]
    smtpEncryption = tls
    smtpServer = smtp.gmail.com
@@ -121,15 +121,15 @@
 [pull]
     twohead = ort
 [maintenance]
-    repo = /Users/mike/code/gtnexus/development
-    repo = /Users/mike/code/gtnexus/devl-rct
-    repo = /Users/mike/code/gtnexus/devl-prod
-    repo = /Users/mike/code/gtnexus/devl
-    repo = /Users/mike/code/gtnexus/pso
+    repo = /Users/michael.rappazzo/code/gtnexus/development
+    repo = /Users/michael.rappazzo/code/gtnexus/devl-rct
+    repo = /Users/michael.rappazzo/code/gtnexus/devl-prod
+    repo = /Users/michael.rappazzo/code/gtnexus/devl
+    repo = /Users/michael.rappazzo/code/gtnexus/pso
 [feature-promote]
     show-timings = true
 [eclipse]
-	path = /Users/mike/Applications/eclipse/latest/Eclipse.app
+	path = /Users/michael.rappazzo/Applications/eclipse/latest/Eclipse.app
 [advice]
     detachedHead = false
     fetchshowforcedupdates = false
