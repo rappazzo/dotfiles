@@ -153,7 +153,16 @@ function last-week {
 }
 function bb-commit {
    rev=$1
-   open "https://code.gtnexus.info/projects/COREDEV/repos/feature-code/commits/$rev"
+   op='open'
+   if [[ $rev == "--print" || $rev == "-p" || $rev == "--print-only" ]]; then
+      rev=$2
+      op='echo'
+   fi
+   if [[ $rev == "" ]]; then
+      rev="HEAD"
+   fi
+   rev=$(git rev-parse $rev)
+   eval "${op} \"https://code.gtnexus.info/projects/COREDEV/repos/feature-code/commits/$rev\""
 }
 function find-merge {
    commit=$1
