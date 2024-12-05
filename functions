@@ -183,6 +183,9 @@ function shadow {
    if [[ ${org} == "" ]]; then
       org=5717988960038861
    fi
+   if echo "${org}" | grep '\-' --quiet; then
+      org=$(echo -n "${org}" | sed s/-//g)
+   fi
    token=$(echo "mikeAdmin:tradecard:shadow@${org}" | base64)
    echo "Token: '${token}' copied to clipboard"
    echo -n $token | pbcopy
