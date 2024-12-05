@@ -133,8 +133,9 @@
 	path = /Users/michael.rappazzo/Applications/eclipse/latest/Eclipse.app
 [advice]
     detachedHead = false
-    fetchshowforcedupdates = false
+    fetchShowForcedUpdates = false
     addEmptyPathspec = false
+	skippedCherryPicks = false
 [gitk]
     hideprefetchrefs = true
 [feature-connect]
