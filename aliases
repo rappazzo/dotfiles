@@ -1,4 +1,4 @@
-alias gka='gitk --all --since="9 months ago" &'
+alias gka='gitk --all --since="6 months ago" &'
 alias gkl='gitk --since="2 years ago" &'
 alias previous-git-version='ls /usr/local/Cellar/git | sort -n | tail -n 2 | head -n 1'
 alias latest-git-version='ls /usr/local/Cellar/git | sort -n | tail -n 1'
