@@ -1,5 +1,5 @@
 set mainfont {Arial 11}
-set textfont {Inconsolata 12}
+set textfont {Monaco 10}
 set uifont {Menlo 11}
 set tabstop 4
 set findmergefiles 0
