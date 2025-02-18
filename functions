@@ -187,8 +187,8 @@ function shadow {
       org=$(echo -n "${org}" | sed s/-//g)
    fi
    token=$(echo "mikeAdmin:tradecard:shadow@${org}" | base64)
-   echo "Token: '${token}' copied to clipboard"
-   echo -n $token | pbcopy
+   echo "Auth Header: 'Shadow ${token}' copied to clipboard"
+   echo -n "Shadow ${token}" | pbcopy
 }
 function set-wallpaper {
    automator -i "${1}" ~/.dots/bin/setDesktopPix.workflow
