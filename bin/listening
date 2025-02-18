@@ -1,0 +1,62 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+my @data = `sudo lsof -iTCP -sTCP:LISTEN -n -P`;
+my $search = shift @ARGV;
+
+my $CMD_MAX_LINE_LEN = 112;
+our $green   = "\033[1;32m";
+our $blue    = "\033[1;34m";
+our $yellow  = "\033[1;33m";
+our $NC      = "\033[0m";
+
+sub colorize {
+   my ($line, $search, $color) = @_;
+   $color = $green unless $color;
+
+   my @parts = split(/($search)/, $line);
+   for my $part (@parts) {
+      my $colored = ($part =~ /$search/);
+      print $color if $colored;
+      print $part;
+      print $NC if $colored;
+   }
+}
+
+if ($search) {
+   my $header = shift @data;
+   my @matches = grep {/$search/} @data;
+   if (scalar @matches > 0) {
+      print $header;
+      for my $line (@matches) {
+         colorize($line, $search);
+      }
+      my $pids = {map {(split(/\s+/, $matches[0]))[1] => 1} @matches};
+      if (scalar keys %$pids == 1) {
+         my $pid = [keys %$pids]->[0];
+         my @proc = `ps -p $pid -o command`;
+         print "  >> ";
+         my @args = split(/ /, $proc[-1]);
+         my $size = length($args[0]);
+         print $blue, $args[0], $NC, " ";
+         for (my $i = 1; $i <= $#args; $i++) {
+            my $arg = $args[$i];
+            my $next_arg = ($i + 1 <= $#args) ? $args[$i + 1] : '';
+            my $len = length($arg) + 1;
+            my $next_len = length($next_arg) + 1;
+            if ($size + $len > $CMD_MAX_LINE_LEN || ($arg =~ /^-/ && $size + $len + $next_len > $CMD_MAX_LINE_LEN)) {
+               print " \\\n        ";
+               $size = 0;
+            }
+            $size += $len;
+            print " ", colorize($arg, $search, $yellow);
+         }
+         print "\r";
+      }
+   } else {
+      print STDERR "No matches\n";
+   }
+} else {
+   print @data;
+}
