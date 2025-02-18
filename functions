@@ -193,3 +193,15 @@ function shadow {
 function set-wallpaper {
    automator -i "${1}" ~/.dots/bin/setDesktopPix.workflow
 }
+function rm-cogs {
+   if [[ ! -d "modules" ]]; then
+      if cd $(git rev-parse --show-cdup) 2>/dev/null; then
+         echo "This is not a COG-enabled repository -- skipping" >&2
+      fi
+   fi
+   if [[ -d "modules" ]]; then
+      rm -rf modules/main/cross-module/src/gen/java
+      rm -rf modules/main/cross-module/src/gen/resources
+      rm -rf modules/main/cross-module/build/classes/java/gen
+   fi
+}
