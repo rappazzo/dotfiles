@@ -1,7 +1,7 @@
 [user]
     name = Michael Rappazzo
     email = michael.rappazzo@infor.com
-    domain-login = mrappazzo
+	domain-login = mrappazzo
 [color]
     diff = auto
     status = auto
@@ -24,6 +24,10 @@
 [diff] 
     tool = araxis
    indentHeuristic = true
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
 [difftool]
     prompt = false
     keepBackup = false
@@ -44,6 +48,7 @@
     default = upstream
 [branch]
     autosetuprebase = always
+	sort = -committerdate
 [credential]
     helper = osxkeychain
 [alias]
@@ -145,3 +150,12 @@
 	ide = idea
 [feature-build]
 	monitor = background
+[column]
+	ui = auto
+[tag]
+	sort = version:refname
+[help]
+	autocorrect = prompt
+[rerere]
+	enabled = true
+	autoupdate = true
