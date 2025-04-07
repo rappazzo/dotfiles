@@ -56,3 +56,8 @@ export PERL_MM_OPT="INSTALL_BASE=/Users/mike/Library/perl5"
 export RT_USE_LOCAL=yes
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# limit git auto-complete to local-only
+__git_files () {
+    _wanted files expl 'local files' _files
+}
