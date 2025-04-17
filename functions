@@ -205,3 +205,15 @@ function rm-cogs {
       rm -rf modules/main/cross-module/build/classes/java/gen
    fi
 }
+function fetch {
+   if git rev-parse --is-inside-work-tree &>/dev/null; then
+      GIT_ROOT=$(git rev-parse --show-toplevel)
+      if [ -f "$GIT_ROOT/.MODULE_ROOT" ]; then
+         git-fetch-daily --all
+      else
+         git fetch-daily
+      fi
+   else
+      echo "Not in a git worktree" >&2
+   fi
+}
