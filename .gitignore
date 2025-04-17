@@ -1,13 +1,17 @@
 .vim/.netrwhist
 .vim/temp
+config/Redgate/feature_usage_data
 config/configstore/update-notifier-@tuyapi
 config/configstore/update-notifier-npm.json
+config/containers
 config/gitui
+config/gramps
 config/infor
 config/iterm2-profiles.json
 config/iterm2/AppSupport
 config/jgit
 config/karabiner/automatic_backups
+config/uv
 private
 vim/.netrwhist
 vim/temp
@@ -15,4 +19,3 @@ vim/temp
 # this is just a symlink
 bin/unjam
 
-config/Redgate/feature_usage_data
