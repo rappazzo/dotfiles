@@ -1,5 +1,5 @@
 alias branch-age='git for-each-ref refs/heads --format="%(committerdate:short)  %(refname:short)" | sort'
-alias dots=cd ~/.dots
+alias dots='cd ~/.dots'
 alias dumper='echo "#print JSON->new->pretty->encode( \$data ) . \"\\\\n\"";'
 alias envs="ENVS_USER='infor\mrappazzo' envs"
 alias file-tree="find . -print | perl -pe 's;[^/]*/;├────;g;s;├────; |;g'"
