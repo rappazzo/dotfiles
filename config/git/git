@@ -159,3 +159,5 @@
 [rerere]
 	enabled = true
 	autoupdate = true
+[remote-service-monitor]
+	release-candidate = true
