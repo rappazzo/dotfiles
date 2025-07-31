@@ -54,16 +54,15 @@ set circlecolors {white blue gray blue blue}
 set linkfgcolor #268bd2
 set circleoutlinecolor #073642
 set diffbgcolors {"#fff3f3" "#f0fff0"}
-set web_browser open
-set hideprefetch 1
 set sortrefsbytype 1
+set web_browser open
 set geometry(main) 1362x962+5+43
 set geometry(state) normal
 set geometry(topwidth) 1362
-set geometry(topheight) 305
+set geometry(topheight) 306
 set geometry(pwsash0) "853 1"
 set geometry(pwsash1) "1106 1"
 set geometry(botwidth) 722
-set geometry(botheight) 652
+set geometry(botheight) 651
 set permviews {{{All -- No time limit} {} --all {}}
 }
