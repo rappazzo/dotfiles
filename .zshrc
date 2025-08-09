@@ -10,8 +10,18 @@ source ~/.dots/zsh/completion.zsh
 source ~/.dots/aliases
 source ~/.dots/functions
 
-eval $(/opt/homebrew/bin/brew shellenv)
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ -d /opt/homebrew ]]; then
+   eval $(/opt/homebrew/bin/brew shellenv)
+   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+   source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+else
+   eval $(/usr/local/Homebrew/bin/brew shellenv)
+   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+   source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+fi
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 
 set -o vi
 
@@ -38,10 +48,6 @@ export MY_USER=mrappazzo
 HISTSIZE=10000
 SAVEHIST=9000
 HISTFILE=~/.zsh_history
-
-source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
 
 # Report CPU usage for commands running longer than 20 seconds
 #REPORTTIME=20
