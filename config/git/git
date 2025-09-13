@@ -1,7 +1,8 @@
 [user]
     name = Michael Rappazzo
     email = michael.rappazzo@infor.com
-	domain-login = mrappazzo
+    domain-login = mrappazzo
+    envs-gtndsa-mgmt-jmp-1-keypath = /Users/michael.rappazzo/.ssh/svc-private-key.pem
 [color]
     diff = auto
     status = auto
@@ -9,12 +10,12 @@
 [color.status]
     changed = yellow
 [core]
-	excludesfile = /Users/michael.rappazzo/.config/git/global-gitignore
+    excludesfile = /Users/michael.rappazzo/.config/git/global-gitignore
     editor = mvim -f --nomru -c \"au VimLeave * !open -a iTerm\"
     preloadindex = true
     pager =
     whitespace = fix
-   disambiguate = commit
+    disambiguate = commit
     commitGraph = true
 [scalar]
     repo = /Users/michael.rappazzo/code/gtnexus/devl
@@ -23,11 +24,11 @@
     username = mrappazzo
 [diff] 
     tool = araxis
-   indentHeuristic = true
-	algorithm = histogram
-	colorMoved = plain
-	mnemonicPrefix = true
-	renames = true
+    indentHeuristic = true
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 [difftool]
     prompt = false
     keepBackup = false
@@ -48,7 +49,7 @@
     default = upstream
 [branch]
     autosetuprebase = always
-	sort = -committerdate
+    sort = -committerdate
 [credential]
     helper = osxkeychain
 [alias]
@@ -65,10 +66,10 @@
     ff-refs = /Users/michael.rappazzo/code/gtnexus/devl
     base-of = /Users/michael.rappazzo/code/gtnexus/devl
 [sendemail]
-   smtpEncryption = tls
-   smtpServer = smtp.gmail.com
-   smtpUser = rappazzo@gmail.com
-   smtpServerPort = 587
+    smtpEncryption = tls
+    smtpServer = smtp.gmail.com
+    smtpUser = rappazzo@gmail.com
+    smtpServerPort = 587
 [rebase]
     instructionFormat = [%an%<|(64)%x5d %s
     autoSquash = true
@@ -135,7 +136,7 @@
 [feature-promote]
     show-timings = true
 [eclipse]
-	path = /Users/michael.rappazzo/Applications/eclipse/latest/Eclipse.app
+    path = /Users/michael.rappazzo/Applications/eclipse/latest/Eclipse.app
 [advice]
     detachedHead = false
     fetchShowForcedUpdates = false
@@ -145,19 +146,19 @@
 [gitk]
     hideprefetchrefs = true
 [feature-connect]
-	prompt-default = false
+    prompt-default = false
 [feature]
-	ide = idea
+    ide = idea
 [feature-build]
-	monitor = background
+    monitor = background
 [column]
-	ui = auto
+    ui = auto
 [tag]
-	sort = version:refname
+    sort = version:refname
 [help]
-	autocorrect = prompt
+    autocorrect = prompt
 [rerere]
-	enabled = true
-	autoupdate = true
+    enabled = true
+    autoupdate = true
 [remote-service-monitor]
-	release-candidate = true
+    release-candidate = true
