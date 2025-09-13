@@ -1,5 +1,4 @@
-# Amazon Q pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
+# [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 source ~/.dots/zsh/colors.zsh
 source ~/.dots/zsh/setopt.zsh
 
@@ -33,6 +32,7 @@ test -f ~/.dots/private-env && source ~/.dots/private-env
 
 export EDITOR=/usr/local/bin/mvim
 export MY_USER=mrappazzo
+export PODMAN_COMPOSE_WARNING_LOGS=false
 
 #export JAVA_HOME=$(/usr/libexec/java_home)
 
