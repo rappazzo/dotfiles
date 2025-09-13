@@ -22,6 +22,12 @@
                     }
                 ]
             },
+            "fn_function_keys": [
+                {
+                    "from": { "key_code": "f5" },
+                    "to": [{ "consumer_key_code": "mute" }]
+                }
+            ],
             "name": "Default profile",
             "selected": true,
             "simple_modifications": [
