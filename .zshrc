@@ -28,7 +28,7 @@ zstyle ':completion:::git:*' script /usr/local/etc/bash_completion.d/git-complet
 #fpath is the search path for function definitions
 fpath=(/usr/local/etc/bash_completion.d/docker /usr/local/share/zsh/site-functions/_git $fpath)
 
-test -f ~/.dots/private-env && source ~/.dots/private-env
+test -f ~/.dots/private/private-env && source ~/.dots/private/private-env
 
 export EDITOR=/usr/local/bin/mvim
 export MY_USER=mrappazzo
@@ -68,3 +68,5 @@ __git_files () {
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
 
 . "$HOME/.config/env"
+
+. "$HOME/.local/bin/env"
