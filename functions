@@ -217,3 +217,9 @@ function fetch {
       echo "Not in a git worktree" >&2
    fi
 }
+function git-activity() {
+   local months=${2:-12}
+   git log --author="$1" --format="%ad" --date=format:"%Y-%m" --since="$months months ago" | \
+      sort | uniq -c | \
+      awk '{printf "%s: ", $2; for(i=0;i<$1;i++) printf "█"; printf " (%d)\n", $1}'
+}
