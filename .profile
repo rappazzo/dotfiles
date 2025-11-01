@@ -47,3 +47,5 @@ export PATH="$HOME/.poetry/bin:$PATH"
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/bash_profile.post.bash" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/bash_profile.post.bash"
 
 . "$HOME/.config/env"
+
+. "$HOME/.local/bin/env"
