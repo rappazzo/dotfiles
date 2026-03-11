@@ -48,6 +48,8 @@ set tagbgcolor #b58900
 set tagfgcolor #073642
 set tagoutlinecolor #073642
 set textfont {{JetBrains Mono} 8}
+set theme aqua
+set themeloader {}
 set uicolor grey85
 set uifgcolor black
 set uifgdisabledcolor #999
@@ -57,13 +59,14 @@ set web_browser open
 set workingfilescirclecolor #d33682
 set wrapcomment none
 set wrapdefault none
-set geometry(main) 1362x962+5+43
+set geometry(main) 1362x962+5+42
 set geometry(state) normal
 set geometry(topwidth) 1362
-set geometry(topheight) 306
-set geometry(pwsash0) "853 1"
-set geometry(pwsash1) "1106 1"
+set geometry(topheight) 302
+set geometry(pwsash0) "934 1"
+set geometry(pwsash1) "1214 1"
 set geometry(botwidth) 722
-set geometry(botheight) 651
+set geometry(botheight) 655
+set geometry(showrefs) 360x958+1368+42
 set permviews {{{All -- No time limit} {} --all {}}
 }
