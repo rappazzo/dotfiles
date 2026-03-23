@@ -1,7 +1,7 @@
 alias branch-age='git for-each-ref refs/heads --format="%(committerdate:short)  %(refname:short)" | sort'
 alias dots='cd ~/.dots'
 alias dumper='echo "#print JSON->new->pretty->encode( \$data ) . \"\\\\n\"";'
-alias envs="ENVS_USER='infor\mrappazzo' envs"
+alias envs="ENVS_USER='infor\\$(git config user.domain-login)' envs"
 
 alias first-commit="git log --format=full 331c2a33df805a1487acc2aef38d0387abeb2d16"
 alias flush-dns="dscacheutil -flushcache; killall -HUP mDNSResponder"
@@ -10,6 +10,7 @@ alias git-conflicts="git ls-files --unmerged | awk '{print \$4}' | sort -u | wc 
 alias git-upstream='git for-each-ref refs/heads/$(git symbolic-ref --short HEAD) --format="%(upstream:short)"'
 alias gka='gitk --all --since="6 months ago" &'
 alias gkl='gitk --since="2 years ago" &'
+alias gkm='gitk --author=$(git config user.email) --since="2 years ago" &'
 alias gradle-check='gradle-check --invoke'
 alias last10='git log -n 10 --format="%h [%Cblue%><(20)%an%Creset] %s"|cat'
 alias file-tree="find . -print | tree-format"
