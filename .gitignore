@@ -19,3 +19,4 @@ vim/temp
 # this is just a symlink
 bin/unjam
 
+config/mole/clean-list.txt
