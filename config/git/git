@@ -44,6 +44,7 @@
     path = /Applications/Araxis Merge.app/Contents/Utilities/compare
 [pager]
     diff = false
+	history-split = delta
 [push]
     default = upstream
 [branch]
@@ -91,7 +92,7 @@
 [patch]
     auto-launch = true
 [interactive]
-    diffFilter = diff-highlight
+	diffFilter = delta --color-only
     default-instance = linux
 [codeflow]
     compile-prompt = No
@@ -128,6 +129,13 @@
 [maintenance]
     repo = /Users/michael.rappazzo/code/gtnexus/devl
     repo = /Users/michael.rappazzo/code/gtnexus/env-config
+	repo = /Users/michael.rappazzo/code/tools/build-server/pipeline
+	repo = /Users/michael.rappazzo/code/tools/bin
+	repo = /Users/michael.rappazzo/code/gtnexus/databricks-notebooks
+	repo = /Users/michael.rappazzo/code/other/git/gitk-source
+	repo = /Users/michael.rappazzo/code/other/git/git-source
+	repo = /Users/michael.rappazzo/code/tools/git/hooks
+	repo = /Users/michael.rappazzo/code/tools/slack-listener
 [feature-promote]
     show-timings = true
 [eclipse]
@@ -138,6 +146,7 @@
     addEmptyPathspec = false
     skippedCherryPicks = false
     mergeConflict = false
+	forceDeleteBranch = false
 [gitk]
     hideprefetchrefs = true
 [feature-connect]
@@ -157,3 +166,5 @@
     autoupdate = true
 [remote-service-monitor]
     release-candidate = true
+[git-fixup]
+	now-push = true

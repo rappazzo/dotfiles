@@ -59,14 +59,14 @@ set web_browser open
 set workingfilescirclecolor #d33682
 set wrapcomment none
 set wrapdefault none
-set geometry(main) 1362x962+5+42
+set geometry(main) 1362x962+5+40
 set geometry(state) normal
 set geometry(topwidth) 1362
-set geometry(topheight) 302
-set geometry(pwsash0) "934 1"
+set geometry(topheight) 259
+set geometry(pwsash0) "937 1"
 set geometry(pwsash1) "1214 1"
 set geometry(botwidth) 722
-set geometry(botheight) 655
-set geometry(showrefs) 360x958+1368+42
+set geometry(botheight) 698
+set geometry(showrefs) 359x960+1369+41
 set permviews {{{All -- No time limit} {} --all {}}
 }
