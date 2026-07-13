@@ -22,6 +22,5 @@ alias path="echo $PATH | tr ':' '\n'"
 alias pbvim='/usr/local/bin/mvim - 2>/dev/null'
 alias rebuild-fef="test -e ./gradlew && ./gradlew cleanJSCaches && ./gradlew cleanFEFCurrent && ./gradlew rebuildNodeSass && ./gradlew buildFEFBundles"
 alias tclog="mvim ~/code/gtnexus/logs/tradecard.log"
-alias q='kiro-cli chat --agent NoMCP'
-alias qq='kiro-cli chat --agent PlyWrt'
-alias qqq='kiro-cli chat'
+alias q='kiro-cli chat --agent Nexus'
+alias tradecard.log 'mvim ~/code/gtnexus/logs/tradecard.log'
