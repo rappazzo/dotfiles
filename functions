@@ -199,15 +199,42 @@ function set-wallpaper {
    automator -i "${1}" ~/.dots/bin/setDesktopPix.workflow
 }
 function rm-cogs {
+   local dry_run=0
+   if [[ "$1" == "-n" || "$1" == "--dry-run" ]]; then
+      dry_run=1
+      shift
+   fi
+
    if [[ ! -d "modules" ]]; then
       if cd $(git rev-parse --show-cdup) 2>/dev/null; then
          echo "This is not a COG-enabled repository -- skipping" >&2
       fi
    fi
-   if [[ -d "modules" ]]; then
-      rm -rf modules/main/cross-module/src/gen/java
-      rm -rf modules/main/cross-module/src/gen/resources
-      rm -rf modules/main/cross-module/build/classes/java/gen
+   [[ -d "modules" ]] || return 0
+
+   local java_dir="modules/main/cross-module/src/gen/java"
+   local res_dir="modules/main/cross-module/src/gen/resources"
+   local cls_dir="modules/main/cross-module/build/classes/java/gen"
+
+   if [[ "$1" != "" ]]; then
+      # $1 is the base file name without extension, e.g. "Foo" matches Foo.java, Foo.class
+      local dir
+      for dir in "$java_dir" "$res_dir" "$cls_dir"; do
+         if (( dry_run )); then
+            find "$dir" -name "$1.*" -type f 2>/dev/null
+         else
+            find "$dir" -name "$1.*" -type f -exec rm -f {} \;
+         fi
+      done
+   else
+      local dir
+      for dir in "$java_dir" "$res_dir" "$cls_dir"; do
+         if (( dry_run )); then
+            find "$dir" -type f 2>/dev/null
+         else
+            rm -rf "$dir"
+         fi
+      done
    fi
 }
 function fetch {
